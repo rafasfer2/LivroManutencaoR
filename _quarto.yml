@@ -1,0 +1,58 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Manutenção e Confiabilidade: Aplicação em R"
+  subtitle: "Aplicações em R"
+  author:
+    - name: "Rafael da Silva Fernandes"
+      affiliation: "Universidade Federal de Itajubá"
+  date: today
+  sidebar:
+    style: docked
+    collapse-level: 3
+    search: true
+
+  chapters:
+    - index.qmd
+    - preface.qmd
+    - requirements.qmd
+    - setup.qmd
+
+    - part: "Parte I - Medidas de Performance na Mineração"
+      chapters:
+        - chapters/part1-01-ciclo-carregamento-transporte.qmd
+        - chapters/part1-02-analise-dados-recorrentes.qmd
+        - chapters/part1-03-aplicacao-pdca.qmd
+        - chapters/part1-04-resumo.qmd
+        - chapters/part1-05-exercicios.qmd
+    - summary.qmd
+    - references.qmd
+
+## bibliography: references.bib
+
+language:
+  pt-BR:
+    fig: "Figura"
+    figures: "Figuras"
+    table: "Tabela"
+    tables: "Tabelas"
+
+format:
+  html:
+    theme:
+      light: flatly
+      dark: darkly
+    css: styles/styles-clean.css
+    code-fold: true
+    code-tools: true
+    toc: true
+    toc-location: right
+    toc-depth: 3
+    number-sections: true
+    link-external-newwindow: true
+    fig-numbers: true
+  pdf:
+    documentclass: book
+    fig-numbers: true

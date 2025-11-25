@@ -1,0 +1,21 @@
+title: "Manutenção e Confiabilidade: Aplicação em R"
+author: "Rafael da Silva Fernandes"
+date: last-modified
+numbered: false
+
+# Bem-vindo
+
+Este é o livro **Manutenção e Confiabilidade: Aplicação em R**.
+
+Use a barra lateral para navegar pelos capítulos.
+
+# Prefácio
+
+Este livro é resultado de pesquisas e aplicações práticas na área de manutenção industrial, com foco no setor de mineração.
+
+# Requisitos e Ambiente
+
+Este livro utiliza a linguagem de programação R para análises e visualizações. Para reproduzir os resultados, você precisa ter os seguintes pacotes instalados:
+
+```{r eval=FALSE}
+install.packages(c("ggplot2", "DiagrammeR", "dplyr", "knitr", "rmarkdown"))
