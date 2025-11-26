@@ -5,13 +5,12 @@ format: html
 numbered: false
 number-sections: false
 # Bem-vindo {.unnumbered}
-
 Bem-vindo ao livro **"Manutenção e Confiabilidade: Aplicação em R"**!
 
 ::: {.callout-note appearance="simple"}
 ## Sobre este Livro
 
-Este livro fornece uma introdução **prática e aplicada** aos conceitos de confiabilidade, análise de dados de falha e modelagem de vida útil, com ênfase no uso da linguagem **R** como ferramenta principal.
+sidebar: false
 :::
 
 ## 📚 O que você vai aprender
