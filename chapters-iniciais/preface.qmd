@@ -1,0 +1,12 @@
+---
+title: "Prefácio"
+format: html
+numbered: false
+---
+# Prefácio
+
+Este livro é resultado de pesquisas e aplicações práticas na área de manutenção industrial, com foco no setor de mineração.
+
+O objetivo é apresentar conceitos fundamentais, métodos estatísticos e ferramentas computacionais para análise de dados de manutenção, promovendo a integração entre teoria e prática.
+
+Esperamos que este conteúdo contribua para o desenvolvimento profissional e acadêmico dos leitores.

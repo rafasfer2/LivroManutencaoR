@@ -260,7 +260,7 @@
 \makeatother
 \subtitle{Aplicações em R}
 \author{Rafael da Silva Fernandes}
-\date{2025-11-25}
+\date{2025-11-26}
 
 \begin{document}
 \frontmatter
@@ -275,12 +275,12 @@
 \mainmatter
 \bookmarksetup{startatroot}
 
+\chapter{Manutenção e Confiabilidade: Aplicação em
+R}\label{manutenuxe7uxe3o-e-confiabilidade-aplicauxe7uxe3o-em-r}
+
+\bookmarksetup{startatroot}
+
 \chapter{Bem-vindo}\label{bem-vindo}
-
-title: ``Manutenção e Confiabilidade: Aplicação em R'' author: ``Rafael
-da Silva Fernandes'' date: last-modified numbered: false
-
-Este é o livro \textbf{Manutenção e Confiabilidade: Aplicação em R}.
 
 Use a barra lateral para navegar pelos capítulos.
 
@@ -288,47 +288,62 @@ Use a barra lateral para navegar pelos capítulos.
 
 \chapter{Prefácio}\label{prefuxe1cio}
 
+\bookmarksetup{startatroot}
+
+\chapter{Prefácio}\label{prefuxe1cio-1}
+
 Este livro é resultado de pesquisas e aplicações práticas na área de
 manutenção industrial, com foco no setor de mineração.
+
+O objetivo é apresentar conceitos fundamentais, métodos estatísticos e
+ferramentas computacionais para análise de dados de manutenção,
+promovendo a integração entre teoria e prática.
+
+Esperamos que este conteúdo contribua para o desenvolvimento
+profissional e acadêmico dos leitores.
 
 \bookmarksetup{startatroot}
 
 \chapter{Requisitos e Ambiente}\label{requisitos-e-ambiente}
 
-Este livro utiliza a linguagem de programação R para análises e
-visualizações. Para reproduzir os resultados, você precisa ter os
-seguintes pacotes instalados:
-
-install.packages(c(``ggplot2'', ``DiagrammeR'', ``dplyr'', ``knitr'',
-``rmarkdown''))
-
-\bookmarksetup{startatroot}
-
-\chapter{Prefácio}\label{prefuxe1cio-1}
-
-title: ``preface'' format: html numbered: false
-
-Este livro é resultado de pesquisas e aplicações práticas na área de
-manutenção industrial, com foco no setor de mineração.
-
 \bookmarksetup{startatroot}
 
 \chapter{Requisitos e Ambiente}\label{requisitos-e-ambiente-1}
 
-title: ``requirements'' format: html numbered: false
-
 Este livro utiliza a linguagem de programação R para análises e
 visualizações. Para reproduzir os resultados, você precisa ter os
 seguintes pacotes instalados:
 
-```\{r eval=FALSE\} install.packages(c(``ggplot2'', ``DiagrammeR'',
-``dplyr'', ``knitr'', ``rmarkdown''))
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{install.packages}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"ggplot2"}\NormalTok{, }\StringTok{"DiagrammeR"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{, }\StringTok{"knitr"}\NormalTok{, }\StringTok{"rmarkdown"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+Além dos pacotes listados acima, recomenda-se o uso do RStudio ou Quarto
+para melhor experiência na execução dos exemplos e visualização dos
+resultados.
+
+Todos os códigos apresentados podem ser executados em ambiente local ou
+em plataformas online compatíveis com R.
 
 \bookmarksetup{startatroot}
 
-\chapter{}\label{section}
+\chapter{Setup}\label{setup}
 
-title: ``setup'' format: html numbered: false
+\bookmarksetup{startatroot}
+
+\chapter{Setup}\label{setup-1}
+
+Para começar, certifique-se de que o R e os pacotes necessários estão
+instalados em seu computador.
+
+Siga as instruções do capítulo anterior para instalar os pacotes.
+Recomenda-se também configurar o diretório de trabalho e garantir que os
+arquivos de dados estejam acessíveis.
+
+Caso utilize o Quarto, basta abrir este projeto e navegar pelos
+capítulos para acompanhar os exemplos e exercícios.
 
 \part{Parte I - Medidas de Performance na Mineração}
 
@@ -362,7 +377,7 @@ tempo de fila para bascular) e, finalmente, o basculamento (TB-- tempo
 de basculamento). Para um único turno de trabalho da operação, um
 determinado número de ciclos (NC) é realizado.
 
-\begin{tcolorbox}[enhanced jigsaw, bottomtitle=1mm, leftrule=.75mm, breakable, colback=white, left=2mm, titlerule=0mm, rightrule=.15mm, coltitle=black, opacityback=0, colbacktitle=quarto-callout-note-color!10!white, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, arc=.35mm, toptitle=1mm, toprule=.15mm, opacitybacktitle=0.6]
+\begin{tcolorbox}[enhanced jigsaw, opacityback=0, toptitle=1mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame, arc=.35mm, coltitle=black, colback=white, toprule=.15mm, bottomtitle=1mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, opacitybacktitle=0.6, left=2mm, bottomrule=.15mm, breakable, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}]
 
 O tempo total do ciclo influencia diretamente a produtividade da
 operação e é afetado por fatores como distância de transporte, condições
@@ -522,7 +537,7 @@ níveis a soma das categorias representam as \textbf{horas calendário}
 HC = HT + HM + HO
 \]
 
-\begin{tcolorbox}[enhanced jigsaw, bottomtitle=1mm, leftrule=.75mm, breakable, colback=white, left=2mm, titlerule=0mm, rightrule=.15mm, coltitle=black, opacityback=0, colbacktitle=quarto-callout-note-color!10!white, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Legenda das Categorias de Horas}, arc=.35mm, toptitle=1mm, toprule=.15mm, opacitybacktitle=0.6]
+\begin{tcolorbox}[enhanced jigsaw, opacityback=0, toptitle=1mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame, arc=.35mm, coltitle=black, colback=white, toprule=.15mm, bottomtitle=1mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, opacitybacktitle=0.6, left=2mm, bottomrule=.15mm, breakable, rightrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Legenda das Categorias de Horas}]
 
 \begin{itemize}
 \tightlist
@@ -799,7 +814,7 @@ Perda por PR & (240.1 - 232.8) × 583 & 4292\\
 
 Exemplo de cálculo de ICDs e perda de produção
 
-\begin{tcolorbox}[enhanced jigsaw, bottomtitle=1mm, leftrule=.75mm, breakable, colback=white, left=2mm, titlerule=0mm, rightrule=.15mm, coltitle=black, opacityback=0, colbacktitle=quarto-callout-important-color!10!white, bottomrule=.15mm, colframe=quarto-callout-important-color-frame, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Interpretação das Perdas}, arc=.35mm, toptitle=1mm, toprule=.15mm, opacitybacktitle=0.6]
+\begin{tcolorbox}[enhanced jigsaw, opacityback=0, toptitle=1mm, leftrule=.75mm, colframe=quarto-callout-important-color-frame, arc=.35mm, coltitle=black, colback=white, toprule=.15mm, bottomtitle=1mm, titlerule=0mm, colbacktitle=quarto-callout-important-color!10!white, opacitybacktitle=0.6, left=2mm, bottomrule=.15mm, breakable, rightrule=.15mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Interpretação das Perdas}]
 
 A análise de perda de produção permite identificar qual indicador teve
 maior impacto negativo na produção realizada, direcionando as ações de
@@ -841,11 +856,11 @@ melhoria:
 
 \textbf{Próximo capítulo:} Fundamentos da Gestão da Manutenção
 
+\chapter{}\label{section}
+
 \chapter{}\label{section-1}
 
 \chapter{}\label{section-2}
-
-\chapter{}\label{section-3}
 
 \bookmarksetup{startatroot}
 

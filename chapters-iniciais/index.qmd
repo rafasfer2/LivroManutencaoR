@@ -4,6 +4,6 @@ author: "Rafael da Silva Fernandes"
 date: last-modified
 numbered: false
 ---
-# Bem-vindo
+# Bem-vindo {.unnumbered}
 
 Use a barra lateral para navegar pelos capítulos.

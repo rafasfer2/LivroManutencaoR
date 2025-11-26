@@ -1,9 +1,9 @@
 title: "requirements"
 format: html
 numbered: false
-
-# Requisitos e Ambiente
-
-Este livro utiliza a linguagem de programação R para análises e visualizações. Para reproduzir os resultados, você precisa ter os seguintes pacotes instalados:
-
-\`\`\`{r eval=FALSE} install.packages(c("ggplot2", "DiagrammeR", "dplyr", "knitr", "rmarkdown"))
+title: "requirements"
+format: html
+numbered: false
+title: "requirements"
+format: html
+numbered: false

@@ -1,0 +1,13 @@
+---
+title: "Setup"
+format: html
+numbered: false
+---
+# Setup
+
+Para começar, certifique-se de que o R e os pacotes necessários estão instalados em seu computador.
+
+Siga as instruções do capítulo anterior para instalar os pacotes. Recomenda-se também configurar o diretório de trabalho e garantir que os arquivos de dados estejam acessíveis.
+
+Caso utilize o Quarto, basta abrir este projeto e navegar pelos capítulos para acompanhar os exemplos e exercícios.
+

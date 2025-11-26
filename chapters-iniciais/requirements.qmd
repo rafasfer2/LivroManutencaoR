@@ -1,0 +1,16 @@
+---
+title: "Requisitos e Ambiente"
+format: html
+numbered: false
+---
+# Requisitos e Ambiente
+
+Este livro utiliza a linguagem de programação R para análises e visualizações. Para reproduzir os resultados, você precisa ter os seguintes pacotes instalados:
+
+```{r eval=FALSE}
+install.packages(c("ggplot2", "DiagrammeR", "dplyr", "knitr", "rmarkdown"))
+```
+
+Além dos pacotes listados acima, recomenda-se o uso do RStudio ou Quarto para melhor experiência na execução dos exemplos e visualização dos resultados.
+
+Todos os códigos apresentados podem ser executados em ambiente local ou em plataformas online compatíveis com R.

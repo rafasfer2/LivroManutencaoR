@@ -1,5 +1,7 @@
 title: "preface" format: html numbered: false
-
-# Prefácio
-
-Este livro é resultado de pesquisas e aplicações práticas na área de manutenção industrial, com foco no setor de mineração.
+title: "preface"
+format: html
+numbered: false
+title: "preface"
+format: html
+numbered: false
