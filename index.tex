@@ -252,13 +252,6 @@
 
 
 \title{Manutenção e Confiabilidade: Aplicação em R}
-\usepackage{etoolbox}
-\makeatletter
-\providecommand{\subtitle}[1]{% add subtitle to \maketitle
-  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
-}
-\makeatother
-\subtitle{Aplicações em R}
 \author{Rafael da Silva Fernandes}
 \date{2025-11-26}
 
@@ -273,196 +266,102 @@
 }
 
 \mainmatter
-\chapter{Manutenção e Confiabilidade: Aplicação em
-R}\label{manutenuxe7uxe3o-e-confiabilidade-aplicauxe7uxe3o-em-r}
+\bookmarksetup{startatroot}
 
-\chapter*{Bem-vindo}\label{bem-vindo}
-\addcontentsline{toc}{chapter}{Bem-vindo}
+\chapter*{Bem-vindo(a)}\label{bem-vindoa}
+\addcontentsline{toc}{chapter}{Bem-vindo(a)}
 
-\markboth{Bem-vindo}{Bem-vindo}
+\markboth{Bem-vindo(a)}{Bem-vindo(a)}
 
-Bem-vindo ao livro \textbf{``Confiabilidade e Manutenção: Princípios e
-Prática''}!
+title: ``Manutenção e Confiabilidade: Aplicação em R'' author: ``Rafael
+da Silva Fernandes'' date: last-modified format: html numbered: false
+number-sections: false
 
-\begin{tcolorbox}[enhanced jigsaw, opacityback=0, leftrule=.75mm, colback=white, bottomrule=.15mm, arc=.35mm, toprule=.15mm, rightrule=.15mm, left=2mm, colframe=quarto-callout-note-color-frame, breakable]
-\begin{minipage}[t]{5.5mm}
-\textcolor{quarto-callout-note-color}{\faInfo}
-\end{minipage}%
-\begin{minipage}[t]{\textwidth - 5.5mm}
+Seja bem-vindo(a) a este livro técnico voltado à análise de
+confiabilidade e estratégias de manutenção aplicadas a sistemas
+industriais. A confiabilidade e a manutenção de ativos são disciplinas
+essenciais para garantir a eficiência operacional, a segurança dos
+processos e a sustentabilidade econômica de sistemas complexos.
 
-\vspace{-3mm}\textbf{Sobre este Livro}\vspace{3mm}
+Com o avanço das tecnologias de monitoramento, da coleta automatizada de
+dados e das ferramentas de análise estatística, tornou-se possível
+aplicar métodos quantitativos robustos para avaliar o desempenho de
+equipamentos, prever falhas e otimizar políticas de manutenção.
 
-Este livro fornece uma introdução \textbf{prática e aplicada} aos
-conceitos de confiabilidade, análise de dados de falha e modelagem de
-vida útil, com ênfase no uso da linguagem \textbf{R} como ferramenta
-principal.
+Este material foi desenvolvido com o propósito de oferecer uma
+introdução \textbf{prática e aplicada} aos conceitos de confiabilidade,
+análise de dados de falha e modelagem de vida útil, com ênfase na
+utilização da linguagem \textbf{R} como ferramenta principal. A
+abordagem adotada combina fundamentos teóricos com aplicações reais,
+permitindo ao leitor compreender os principais indicadores de
+desempenho, ajustar modelos estatísticos e implementar estratégias de
+manutenção baseadas em dados.
 
-\end{minipage}%
-\end{tcolorbox}
+\section*{Indicadores-Chave de Desempenho
+(ICDs)}\label{indicadores-chave-de-desempenho-icds}
+\addcontentsline{toc}{section}{Indicadores-Chave de Desempenho (ICDs)}
 
-\section{📚 O que você vai aprender}\label{o-que-vocuxea-vai-aprender}
+\markright{Indicadores-Chave de Desempenho (ICDs)}
 
-\begin{itemize}
-\tightlist
-\item
-  \textbf{Fundamentos de confiabilidade} --- Conceitos, métricas e
-  distribuições de vida útil
-\item
-  \textbf{Análise de dados de falha} --- Técnicas estatísticas para
-  dados censurados
-\item
-  \textbf{Modelagem Weibull} --- Aplicação prática da distribuição mais
-  usada em engenharia
-\item
-  \textbf{Análise de sobrevivência} --- Modelos paramétricos e
-  semiparamétricos
-\item
-  \textbf{Estratégias de manutenção} --- Otimização de políticas
-  preventivas e preditivas
-\item
-  \textbf{Machine learning} --- Predição de falhas com dados de sensores
-\item
-  \textbf{Simulação Monte Carlo} --- Avaliação de políticas sob
-  incerteza
-\item
-  \textbf{Boas práticas} --- Governança de dados e reprodutibilidade
-\end{itemize}
-
-\section{🎯 Para quem é este livro}\label{para-quem-uxe9-este-livro}
+Ao longo do livro, serão abordados os principais indicadores utilizados
+na gestão de manutenção:
 
 \begin{itemize}
-\tightlist
 \item
-  \textbf{Engenheiros de confiabilidade e manutenção}
+  \textbf{DF -- Disponibilidade Física (Availability):} representa a
+  capacidade de um sistema estar em condições de executar sua função.
+  Sua indisponibilidade está diretamente relacionada às \textbf{Horas de
+  Manutenção (HM)}, refletindo oportunidades de melhoria associadas ao
+  status ``em manutenção''.
 \item
-  \textbf{Analistas de dados} em contextos industriais
+  \textbf{UF -- Utilização Física:} indica o quanto da disponibilidade
+  (\textbf{HD}) é efetivamente utilizada para operação (\textbf{HT}). A
+  diferença entre HD e HT corresponde à \textbf{Ociosidade (HO)}, que
+  ocorre quando o equipamento está ``liberado pela manutenção'' ou em
+  ``parada operacional''.
 \item
-  \textbf{Estudantes e pesquisadores} em engenharia e estatística
+  \textbf{HT -- Horas Trabalhadas:} representam o tempo efetivo de
+  operação dos ativos e são resultado direto da eficiência nos demais
+  indicadores. Servem de base para o cálculo da UF e da produtividade.
 \item
-  \textbf{Gestores técnicos} que tomam decisões baseadas em dados
+  \textbf{PR -- Produtividade:} expressa a eficiência do ciclo de
+  carregamento e transporte, sendo calculada pela razão entre a
+  \textbf{Massa Total transportada (MT)} e as \textbf{Horas Trabalhadas
+  (HT)}. Está associada ao status ``apto para operação''.
+\item
+  \textbf{MTBF -- Mean Time Between Failures:} tempo médio entre falhas,
+  mede a confiabilidade do equipamento ao indicar o intervalo médio de
+  tempo em que o sistema opera sem falhas. Quanto maior o MTBF, maior a
+  confiabilidade.
+\item
+  \textbf{MTTR -- Mean Time to Repair:} tempo médio para reparo,
+  representa a eficiência da manutenção corretiva ao indicar quanto
+  tempo, em média, é necessário para restaurar o funcionamento do
+  equipamento após uma falha. Quanto menor o MTTR, maior a agilidade da
+  equipe de manutenção.
 \end{itemize}
-
-\section{🚀 Como usar este livro}\label{como-usar-este-livro}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  \textbf{Leia sequencialmente} --- Os capítulos são progressivos
-\item
-  \textbf{Execute os exemplos} --- Todos os códigos R são reproduzíveis
-\item
-  \textbf{Faça os exercícios} --- Pratique para consolidar o aprendizado
-\item
-  \textbf{Use como referência} --- Consulte os apêndices quando
-  necessário
-\end{enumerate}
-
-\section{📖 Estrutura}\label{estrutura}
-
-O livro está organizado em \textbf{quatro partes principais}:
-
-\begin{itemize}
-\tightlist
-\item
-  \textbf{Parte I:} Contexto de Mineração
-\item
-  \textbf{Parte II:} Fundamentos de Confiabilidade
-\item
-  \textbf{Parte III:} Estratégias de Manutenção
-\item
-  \textbf{Parte IV:} Tópicos Avançados
-\end{itemize}
-
-\section{💻 Requisitos}\label{requisitos}
-
-\begin{itemize}
-\tightlist
-\item
-  \textbf{R} (versão ≥ 4.0) e \textbf{RStudio} ou VS Code
-\item
-  \textbf{Pacotes R} principais: \texttt{tidyverse}, \texttt{survival},
-  \texttt{flexsurv}, \texttt{ggplot2}
-\end{itemize}
-
-Veja instruções completas em \href{setup.qmd}{Instalação e Ambiente}.
-
-\section{🔗 Recursos}\label{recursos}
-
-\begin{itemize}
-\tightlist
-\item
-  \textbf{Código:}
-  \href{https://github.com/rafasfer2/QuartoBook}{GitHub}
-\item
-  \textbf{Dados:} Disponíveis em \texttt{resources/data/}
-\item
-  \textbf{Issues:}
-  \href{https://github.com/rafasfer2/QuartoBook/issues}{GitHub Issues}
-\end{itemize}
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-\begin{tcolorbox}[enhanced jigsaw, opacityback=0, leftrule=.75mm, colback=white, bottomrule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, rightrule=.15mm, colframe=quarto-callout-tip-color-frame, coltitle=black, titlerule=0mm, opacitybacktitle=0.6, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Pronto para começar?}, toprule=.15mm, toptitle=1mm, arc=.35mm, left=2mm, bottomtitle=1mm, breakable]
-
-Inicie pelo \href{preface.qmd}{Prefácio} para entender melhor o contexto
-e objetivos deste livro, ou vá direto para \href{requirements.qmd}{Como
-Usar este Livro} para configurar seu ambiente.
-
-\end{tcolorbox}
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-\textbf{Boa leitura e bons estudos!} 📊✨
-
-\part{}
-
-\chapter*{Prefácio}\label{prefuxe1cio}
-\addcontentsline{toc}{chapter}{Prefácio}
-
-\markboth{Prefácio}{Prefácio}
-
-\section*{Sobre este Livro}\label{sobre-este-livro-1}
-\addcontentsline{toc}{section}{Sobre este Livro}
-
-\markright{Sobre este Livro}
-
-A \textbf{confiabilidade} e a \textbf{manutenção} de equipamentos e
-sistemas são pilares fundamentais para a operação eficiente e segura de
-indústrias em todo o mundo. Com o avanço da coleta de dados, da
-computação estatística e do aprendizado de máquina, a análise
-quantitativa de falhas e a otimização de estratégias de manutenção
-tornaram-se mais acessíveis e poderosas do que nunca.
-
-Este livro tem como objetivo fornecer uma introdução \textbf{prática e
-aplicada} aos conceitos de confiabilidade, análise de dados de falha e
-modelagem de vida útil, com ênfase no uso da linguagem \textbf{R} como
-ferramenta principal. Ele é direcionado a engenheiros, analistas de
-dados, gestores de manutenção, estudantes e profissionais que desejam
-aplicar métodos estatísticos modernos para melhorar a disponibilidade,
-reduzir custos e otimizar políticas de manutenção.
 
 \section*{Público-Alvo}\label{puxfablico-alvo}
 \addcontentsline{toc}{section}{Público-Alvo}
 
 \markright{Público-Alvo}
 
+Este livro é direcionado a:
+
 \begin{itemize}
 \tightlist
 \item
-  \textbf{Engenheiros de confiabilidade e manutenção} que buscam
-  ferramentas práticas para análise de dados de falha e otimização de
-  políticas.
+  Engenheiros de confiabilidade e manutenção que buscam ferramentas
+  práticas para análise de dados de falha e otimização de políticas.
 \item
-  \textbf{Analistas de dados} interessados em aplicar modelos
-  estatísticos e de machine learning em contextos industriais.
+  Analistas de dados interessados em aplicar modelos estatísticos e de
+  machine learning em contextos industriais.
 \item
-  \textbf{Estudantes e pesquisadores} que desejam aprender técnicas de
-  análise de sobrevivência e modelagem de confiabilidade com exemplos
-  reais.
+  Estudantes e pesquisadores que desejam aprender técnicas de análise de
+  sobrevivência e modelagem de confiabilidade com exemplos reais.
 \item
-  \textbf{Gestores técnicos} que precisam tomar decisões baseadas em
-  dados para melhorar a performance de ativos.
+  Gestores técnicos que precisam tomar decisões baseadas em dados para
+  melhorar a performance de ativos.
 \end{itemize}
 
 \section*{Objetivos}\label{objetivos}
@@ -470,34 +369,34 @@ reduzir custos e otimizar políticas de manutenção.
 
 \markright{Objetivos}
 
-Ao final deste livro, o leitor será capaz de:
+Ao final da leitura, o leitor será capaz de:
 
 \begin{itemize}
 \tightlist
 \item
-  Compreender os \textbf{conceitos fundamentais} de confiabilidade,
+  Compreender os conceitos fundamentais de confiabilidade,
   disponibilidade e manutenção.
 \item
-  Ajustar e interpretar \textbf{distribuições de vida útil} (Weibull,
+  Ajustar e interpretar distribuições de vida útil (Weibull,
   exponencial, lognormal) a dados reais.
 \item
-  Realizar \textbf{análise de sobrevivência} com dados censurados usando
-  técnicas paramétricas e semiparamétricas.
+  Realizar análise de sobrevivência com dados censurados usando técnicas
+  paramétricas e semiparamétricas.
 \item
-  Implementar \textbf{estratégias de manutenção preventiva e preditiva}
-  com base em dados de sensores e histórico de falhas.
+  Implementar estratégias de manutenção preventiva e preditiva com base
+  em dados de sensores e histórico de falhas.
 \item
-  Utilizar \textbf{simulação Monte Carlo} para avaliar políticas de
-  manutenção sob incerteza.
+  Utilizar simulação Monte Carlo para avaliar políticas de manutenção
+  sob incerteza.
 \item
-  Aplicar boas práticas de \textbf{gestão de dados} e reprodutibilidade
-  em projetos de confiabilidade.
+  Aplicar boas práticas de gestão de dados e reprodutibilidade em
+  projetos de confiabilidade.
 \end{itemize}
 
-\section*{Como Usar este Livro}\label{como-usar-este-livro-1}
-\addcontentsline{toc}{section}{Como Usar este Livro}
+\section*{Como Usar Este Livro}\label{como-usar-este-livro}
+\addcontentsline{toc}{section}{Como Usar Este Livro}
 
-\markright{Como Usar este Livro}
+\markright{Como Usar Este Livro}
 
 Este livro é \textbf{totalmente reproduzível}. Todos os exemplos de
 código R estão embutidos nos capítulos e podem ser executados
@@ -507,16 +406,16 @@ diretamente. Recomendamos que o leitor:
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \textbf{Instale o R e o RStudio} (ou use o VS Code com extensões de R)
-  seguindo as instruções no capítulo de instalação.
+  Instale o R e o RStudio (ou utilize o VS Code com extensões de R)
+  conforme instruções no capítulo de instalação.
 \item
-  \textbf{Execute os exemplos} à medida que avança pelos capítulos para
+  Execute os exemplos à medida que avança pelos capítulos para
   consolidar o aprendizado.
 \item
-  \textbf{Explore os exercícios} propostos ao final de cada capítulo
-  para praticar os conceitos.
+  Explore os exercícios propostos ao final de cada capítulo para
+  praticar os conceitos.
 \item
-  \textbf{Utilize os dados de exemplo} fornecidos na pasta
+  Utilize os dados de exemplo fornecidos na pasta
   \texttt{resources/data/} para replicar as análises.
 \end{enumerate}
 
@@ -524,31 +423,6 @@ Os capítulos são organizados de forma \textbf{progressiva}, começando
 pelos fundamentos teóricos e avançando para aplicações práticas e
 estudos de caso. Você pode seguir a ordem proposta ou pular para
 capítulos específicos de acordo com suas necessidades.
-
-\section*{Ferramentas e Recursos}\label{ferramentas-e-recursos}
-\addcontentsline{toc}{section}{Ferramentas e Recursos}
-
-\markright{Ferramentas e Recursos}
-
-Este livro foi desenvolvido com:
-
-\begin{itemize}
-\tightlist
-\item
-  \textbf{Quarto} --- Sistema de publicação científica e técnica que
-  integra código, texto e visualizações.
-\item
-  \textbf{R} --- Linguagem de programação estatística open-source com
-  vasto ecossistema de pacotes.
-\item
-  \textbf{Pacotes R principais} --- \texttt{survival},
-  \texttt{flexsurv}, \texttt{WeibullR}, \texttt{reliability},
-  \texttt{tidyverse}, \texttt{ggplot2}, entre outros.
-\end{itemize}
-
-Todos os materiais suplementares, incluindo dados, scripts e recursos
-adicionais, estão disponíveis no diretório \texttt{resources/} do
-projeto.
 
 \section*{Convenções}\label{convenuxe7uxf5es}
 \addcontentsline{toc}{section}{Convenções}
@@ -584,7 +458,9 @@ feedback e sugestões ao longo do desenvolvimento deste material.
 
 \textbf{Rafael da Silva Fernandes} \emph{Novembro de 2025}
 
-\chapter*{Como Usar este Livro}\label{como-usar-este-livro-2}
+\bookmarksetup{startatroot}
+
+\chapter*{Como Usar este Livro}\label{como-usar-este-livro-1}
 \addcontentsline{toc}{chapter}{Como Usar este Livro}
 
 \markboth{Como Usar este Livro}{Como Usar este Livro}
@@ -641,6 +517,8 @@ Cada capítulo inclui:
 \subsection*{Convenções de Código}\label{convenuxe7uxf5es-de-cuxf3digo}
 \addcontentsline{toc}{subsection}{Convenções de Código}
 
+\bookmarksetup{startatroot}
+
 \chapter*{Exemplo de código R}\label{exemplo-de-cuxf3digo-r}
 \addcontentsline{toc}{chapter}{Exemplo de código R}
 
@@ -648,12 +526,16 @@ Cada capítulo inclui:
 
 library(dplyr) library(ggplot2)
 
+\bookmarksetup{startatroot}
+
 \chapter*{Carregar dados de exemplo}\label{carregar-dados-de-exemplo}
 \addcontentsline{toc}{chapter}{Carregar dados de exemplo}
 
 \markboth{Carregar dados de exemplo}{Carregar dados de exemplo}
 
 data \textless- read.csv(``resources/data/falhas.csv'')
+
+\bookmarksetup{startatroot}
 
 \chapter*{Análise exploratória}\label{anuxe1lise-exploratuxf3ria}
 \addcontentsline{toc}{chapter}{Análise exploratória}
@@ -941,6 +823,8 @@ Para dúvidas, sugestões ou relato de erros:
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \textbf{Boa leitura e bons estudos!} 🚀
+
+\bookmarksetup{startatroot}
 
 \chapter*{Instalação e Ambiente}\label{instalauxe7uxe3o-e-ambiente}
 \addcontentsline{toc}{chapter}{Instalação e Ambiente}
@@ -1360,32 +1244,55 @@ transporte}\label{ciclo-dos-processos-de-carregamento-e-transporte}
 
 O ciclo de processos de carregamento e transporte, pertencente à etapa
 de lavra na mineração, ocorre apenas quando o caminhão se encontra com
-status de ``apto para operação'' em que as métricas de análise e
-indicadores próprios são estabelecidos para otimização do processo.
+status de \textbf{``apto para operação''}, momento em que métricas de
+análise e indicadores são estabelecidos para a otimização do processo.
 
-A @ref(fig:ciclo-processos), mostra que o ciclo inicia no direcionamento
-do caminhão, que percorre vazio até o ponto de carga (TVV -- tempo de
-viagem vazio), aguarda na fila para carga (TFC -- tempo de fila para
-carga), e realiza a manobra (TMC -- tempo de manobra para carregar) para
-o carregamento pela escavadeira (TC --
+Conforme ilustrado na Figure~\ref{fig-ciclo}, o ciclo inicia no
+direcionamento do caminhão e segue a seguinte sequência de eventos:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{TVV (Tempo de Viagem Vazio):} O caminhão percorre vazio o
+  trajeto até o ponto de carga.
+\item
+  \textbf{TFC (Tempo de Fila para Carga):} Aguarda na fila para ser
+  carregado.
+\item
+  \textbf{TMC (Tempo de Manobra para Carregar):} Realiza a manobra para
+  posicionamento.
+\item
+  \textbf{TC (Tempo de Carregamento):} Ocorre o carregamento pela
+  escavadeira.
+\item
+  \textbf{TVC (Tempo de Viagem Cheio):} Transporte do material com o
+  caminhão cheio.
+\item
+  \textbf{TFB (Tempo de Fila para Bascular):} Aguarda na fila do ponto
+  de descarga.
+\item
+  \textbf{TB (Tempo de Basculamento):} Realiza o basculamento do
+  material.
+\end{enumerate}
+
+Para um único turno de trabalho da operação, contabiliza-se o total de
+ciclos realizados (\textbf{NC}).
 
 \begin{figure}
 
-{\centering \pandocbounded{\includegraphics[keepaspectratio]{chapters/../images/fig-ciclo-processos.png}}
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{chapters/../images/fig-ciclo-processos.png}}
 
 }
 
-\caption{Ciclo de processos de carregamento e transporte.}
+\caption{\label{fig-ciclo}Ciclo de processos de carregamento e
+transporte.}
 
 \end{figure}%
 
-tempo de carregamento). Com o caminhão cheio, ocorre o transporte (TVC
--- tempo de viagem cheio), aguarda na fila para basculamento (TFB --
-tempo de fila para bascular) e, finalmente, o basculamento (TB-- tempo
-de basculamento). Para um único turno de trabalho da operação, um
-determinado número de ciclos (NC) é realizado.
-
-\begin{tcolorbox}[enhanced jigsaw, opacityback=0, leftrule=.75mm, colback=white, bottomrule=.15mm, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, colframe=quarto-callout-note-color-frame, coltitle=black, titlerule=0mm, opacitybacktitle=0.6, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, toprule=.15mm, toptitle=1mm, arc=.35mm, left=2mm, bottomtitle=1mm, breakable]
+\begin{tcolorbox}[enhanced jigsaw, titlerule=0mm, coltitle=black, rightrule=.15mm, colback=white, breakable, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, opacityback=0, bottomtitle=1mm, opacitybacktitle=0.6, arc=.35mm, colbacktitle=quarto-callout-note-color!10!white, toptitle=1mm, bottomrule=.15mm, left=2mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 O tempo total do ciclo influencia diretamente a produtividade da
 operação e é afetado por fatores como distância de transporte, condições
@@ -1425,6 +1332,35 @@ problemas operacionais distintos. Por exemplo, quando o caminhão está:
   planejamento é conduzido pela gerência considerando toda a cadeia
   produtiva.
 \end{itemize}
+
+\#\textbar{} label: fig-status-equipamento \#\textbar{} fig-cap:
+``Transições entre status do equipamento'' \#\textbar{} echo: false
+\#\textbar{} eval: false
+
+library(DiagrammeR)
+
+grViz('' digraph status \{ graph {[}rankdir = TB, bgcolor =
+transparent{]}
+
+\begin{verbatim}
+node [shape = box, style = 'filled,rounded', fontname = Helvetica]
+
+APO [label = 'Apto para\\nOperação', fillcolor = '#2ECC71']
+LIB [label = 'Liberado pela\\nManutenção', fillcolor = '#3498DB']
+MAN [label = 'Em\\nManutenção', fillcolor = '#E74C3C']
+PAR [label = 'Parada\\nOperacional', fillcolor = '#95A5A6']
+
+LIB -> APO [label = '  operação\\n  assume  ']
+APO -> MAN [label = '  falha ou\\n  preventiva  ']
+MAN -> LIB [label = '  conclusão\\n  serviço  ']
+APO -> PAR [label = '  parada\\n  planejada  ']
+PAR -> APO [label = '  retomada\\n  operação  ']
+\end{verbatim}
+
+\}
+
+``)
+\pandocbounded{\includegraphics[keepaspectratio]{chapters/../images/fig-caminhao-797.png}}
 
 \section{Descrição do equipamento}\label{descriuxe7uxe3o-do-equipamento}
 
@@ -1545,7 +1481,7 @@ níveis a soma das categorias representam as \textbf{horas calendário}
 HC = HT + HM + HO
 \]
 
-\begin{tcolorbox}[enhanced jigsaw, opacityback=0, leftrule=.75mm, colback=white, bottomrule=.15mm, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, colframe=quarto-callout-note-color-frame, coltitle=black, titlerule=0mm, opacitybacktitle=0.6, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Legenda das Categorias de Horas}, toprule=.15mm, toptitle=1mm, arc=.35mm, left=2mm, bottomtitle=1mm, breakable]
+\begin{tcolorbox}[enhanced jigsaw, titlerule=0mm, coltitle=black, rightrule=.15mm, colback=white, breakable, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Legenda das Categorias de Horas}, opacityback=0, bottomtitle=1mm, opacitybacktitle=0.6, arc=.35mm, colbacktitle=quarto-callout-note-color!10!white, toptitle=1mm, bottomrule=.15mm, left=2mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame]
 
 \begin{itemize}
 \tightlist
@@ -1822,7 +1758,7 @@ Perda por PR & (240.1 - 232.8) × 583 & 4292\\
 
 Exemplo de cálculo de ICDs e perda de produção
 
-\begin{tcolorbox}[enhanced jigsaw, opacityback=0, leftrule=.75mm, colback=white, bottomrule=.15mm, colbacktitle=quarto-callout-important-color!10!white, rightrule=.15mm, colframe=quarto-callout-important-color-frame, coltitle=black, titlerule=0mm, opacitybacktitle=0.6, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Interpretação das Perdas}, toprule=.15mm, toptitle=1mm, arc=.35mm, left=2mm, bottomtitle=1mm, breakable]
+\begin{tcolorbox}[enhanced jigsaw, titlerule=0mm, coltitle=black, rightrule=.15mm, colback=white, breakable, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Interpretação das Perdas}, opacityback=0, bottomtitle=1mm, opacitybacktitle=0.6, arc=.35mm, colbacktitle=quarto-callout-important-color!10!white, toptitle=1mm, bottomrule=.15mm, left=2mm, toprule=.15mm, leftrule=.75mm, colframe=quarto-callout-important-color-frame]
 
 A análise de perda de produção permite identificar qual indicador teve
 maior impacto negativo na produção realizada, direcionando as ações de
@@ -1864,11 +1800,11 @@ melhoria:
 
 \textbf{Próximo capítulo:} Fundamentos da Gestão da Manutenção
 
+\chapter{}\label{section}
+
 \chapter{}\label{section-1}
 
 \chapter{}\label{section-2}
-
-\chapter{}\label{section-3}
 
 \bookmarksetup{startatroot}
 

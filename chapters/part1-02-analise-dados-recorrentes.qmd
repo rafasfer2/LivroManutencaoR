@@ -1,155 +1,180 @@
 ---
-title: "Análise de dados recorrentes"
+title: "Análise de Dados Recorrentes e Indicadores"
+author: "Rafael da Silva Fernandes"
+date: last-modified
+number-sections: true
+format:
+  html:
+    code-fold: true
+    code-tools: true
 ---
 
-
-## Estrutura de banco de dados
+## Estrutura de Banco de Dados
 
 ### Exemplos de histórico de dados
+*(Espaço reservado para inserção de amostra do dataset)*
 
 ### Tipos e classes dos dados
+*(Espaço reservado para descrição das variáveis)*
 
-### Categoria de horas
+## Elementos de Suporte e Tempos Operacionais
 
-Categoria de horas corresponde à divisão do tempo em classes de serviços ou condição dos equipamentos, detalhando as horas na execução de atividades de operação e manutenção no equipamento. Para melhor cálculo dos indicadores, os tempos de funcionamento são agrupados em horas dependendo da ocorrência dos eventos e do conjunto de equipamentos que compõe o sistema.
+Os elementos de suporte consistem nos dados diretamente monitorados e coletados durante a produção (Kang et al., 2016). No contexto do transporte, os dados dos caminhões *off-highway* são obtidos via horímetros instalados no sistema de medição, denominados **tempos operacionais**.
 
-No ciclo de processos de transporte, os dados coletados em caminhões "off-highway" são obtidos dos horímetros instalados no sistema de medição e denominados tempos operacionais.
+Esses dados são classificados hierarquicamente em três níveis para fins de cálculo de indicadores.
 
-![Fluxo de relacionamento entre categorias de horas.](../images/fig-categorias-horas.png){#fig:categorias-horas fig-cap="Fluxo de relacionamento entre categorias de horas."}
+### Hierarquia dos Tempos
 
-A partir daí, estas são apontadas no banco de dados em categorias de horas, que são as: horas efetivas (HEF), horas de atraso operacional (HAO), horas trabalhadas diversas (HTD), horas trabalhadas de infraestrutura (HTI); horas ociosas interna (HOI); horas ociosas externa (HOE); horas de manutenção corretiva (HMC), horas de acidente (HAC); horas preventivas sistemática (MPS) e horas preventivas não sistemática (MPNS). Iremos denominar estes elementos com o tempo de primeiro nível. Como mostrado na Figura @ref(fig-categorias-horas), o fluxo de relacionamento entre estas categorias é ilustrado.
+**Nível 1: Dados Brutos (Apontamentos)**
+É a base de dados, composta pelas categorias primárias de horas registradas:
 
-Para o cálculo de indicadores, é comum realizar a síntese de algumas categorias de horas ou, de outra forma, a junção de horas. Assim, os **elementos de tempo de segundo nível** são:
+* **HEF:** Horas Efetivas
+* **HAO:** Horas de Atraso Operacional
+* **HTD:** Horas Trabalhadas Diversas
+* **HTI:** Horas Trabalhadas de Infraestrutura
+* **HOI:** Horas Ociosas Internas
+* **HOE:** Horas Ociosas Externas
+* **HMC:** Horas de Manutenção Corretiva
+* **HAC:** Horas de Acidente
+* **MPS:** Horas Preventivas Sistemáticas
+* **MPNS:** Horas Preventivas Não Sistemáticas
 
-- **Horas de manutenção corretiva total** (HMCT = HMC + HAC)
-- **Horas de manutenção preventiva** (HMP = MPS)
-- **Horas trabalhadas não produtivas** (HNTP = HTI + HTD)
-- **Horas ociosas** (HO = HOI + HOE)
-- **Horas trabalhadas produtivas** (HTP = HEF + HAO)
+**Nível 2: Síntese de Categorias**
+Para o cálculo de indicadores intermediários, realiza-se o agrupamento das horas do primeiro nível:
 
-Por fim, para o **terceiro nível** temos:
+* **Manutenção Corretiva Total ($H_{mct}$):** Soma das corretivas e acidentes ($HMC + HAC$).
+* **Manutenção Preventiva ($H_{mp}$):** Soma das preventivas sistemáticas e não sistemáticas ($MPS + MPNS$).
+* **Trabalhadas Não Produtivas ($H_{tnp}$):** Atividades de apoio e infraestrutura ($HTD + HTI$).
+* **Ociosas ($H_{oci}$):** Soma das ociosidades internas e externas ($HOI + HOE$).
+* **Trabalhadas Produtivas ($H_{tp}$):** Tempo efetivo de produção e atrasos operacionais inerentes ($HEF + HAO$).
 
-- **Horas trabalhadas** (HT = HEF + HAO + HTD + HTI)
-- **Horas em manutenção** (HM = HMC + HAC + MPS + MPNS)
-- **Horas ociosas** (HO)
+**Nível 3: Categorias Globais**
+O nível mais alto de agregação, utilizado para KPIs estratégicos como Disponibilidade Física e Utilização:
 
-Ao agrupar as categorias de horas em dia, semana, mês ou ano, o valor nominal será dado pela soma da duração de todos os apontamentos, cuja razão esteja configurada para contabilizar esta categoria. Em todos os níveis a soma das categorias representam as **horas calendário** (HC), por exemplo, temos que:
+1.  **Horas Trabalhadas ($H_{trab}$):** $H_{tp} + H_{tnp}$
+2.  **Horas em Manutenção ($H_{man}$):** $H_{mct} + H_{mp}$
+3.  **Horas Paradas/Ociosas ($H_{par}$):** $H_{oci}$
 
-$$
-HC = HT + HM + HO
-$$
+```{mermaid}
+%%| label: fig-hierarquia-tempos
+%%| fig-cap: "Fluxograma da Hierarquia de Tempos Operacionais"
+flowchart TD
+    HC[Horas Calendário - Hcal] --> HMAN[Horas Manutenção - Hman]
+    HC --> HTRAB[Horas Trabalhadas - Htrab]
+    HC --> HPAR[Horas Paradas - Hpar]
+
+    HMAN --> HMCT[Corretiva Total]
+    HMAN --> HMP[Preventiva Total]
+
+    HTRAB --> HTP[Produtivas]
+    HTRAB --> HTNP[Não Produtivas]
+
+    HPAR --> HOCI[Ociosas]
+
+    HMCT --- L1_1[HMC, HAC]
+    HMP --- L1_2[MPS, MPNS]
+    HTP --- L1_3[HEF, HAO]
+    HTNP --- L1_4[HTD, HTI]
+    HOCI --- L1_5[HOI, HOE]
+
+    style HC fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    style HMAN fill:#ffebee,stroke:#b71c1c
+    style HTRAB fill:#e8f5e9,stroke:#1b5e20
+    style HPAR fill:#fff3e0,stroke:#e65100
+```
 
 ::: {.callout-note}
-## Legenda das Categorias de Horas
+## Equação de Balanço
 
-- **HMC**: Horas de Manutenção Corretiva
-- **HAC**: Horas de Aguardo Corretiva
-- **MPS**: Manutenção Preventiva Sistemática
-- **MPNS**: Manutenção Preventiva Não Sistemática
-- **HTI**: Horas de Trabalho Improdutivo
-- **HTD**: Horas de Trabalho em Deslocamento
-- **HOI**: Horas Ociosas Internas
-- **HOE**: Horas Ociosas Externas
-- **HEF**: Horas Efetivas
-- **HAO**: Horas de Apoio à Operação
+Em todos os níveis hierárquicos apresentados acima, a soma das categorias deve totalizar as **Horas Calendário ($H_{cal}$)**. A relação fundamental para o terceiro nível é:
+
+$$
+H_{cal} = H_{trab} + H_{man} + H_{par}
+$$
 :::
-### Indicadores chave de desempenho (ICD)
-
-### Diagrama de build-up
-
-## Política de manutenção
-
-### Manutenção corretiva
-
-### Manutenção preventiva
-
-### Dinâmica de ocorrência de falhas
-
-### Notações e terminologia
-
-### Gráfico de processo de contagem
-
-## Confiabilidade e periodicidade
-
-### Performance da manutenção
-
-### Mensuração de impacto na incidência de corretivas
-
-### Mensuração de impacto na disponibilidade
 
 ## Indicadores Chave de Desempenho (ICD) {#sec-icd}
 
-O principal produto do ciclo de transporte é a **massa transportada (MT)**, este configura-se como elemento quantitativo.
+Ao agrupar as categorias de horas em períodos, obtém-se a base para os indicadores. O principal produto do ciclo de transporte é a **Massa Transportada (MT)**, que configura-se como o elemento quantitativo central.
 
-Os ICDs são derivados de elementos de medição, logo, como um elemento pode ser usado nas definições de vários ICDs, é improvável que eles sejam independentes entre si. De acordo com @kang2016, há dois tipos básicos de relacionamento, o primeiro dado pela relação de identidade dos ICDs, baseado em suas definições e, o outro, é a relevância com elementos de suporte compartilhados que podem ser obtidos por comparação aos pares e/ou por agrupamentos em níveis.
+De acordo com @kang2016, há dois tipos básicos de relacionamento entre indicadores:
 
-Cada ICD revela um aspecto de desempenho para uma unidade de trabalho ou sistema, derivado de dados monitorados de elementos de suporte. Os ICDs podem ser agrupados por aqueles que representam um grupo de aspectos com atributos semelhantes.
+1.  **Identidade:** Baseada nas definições matemáticas diretas.
+2.  **Relevância:** Baseada em elementos de suporte compartilhados.
 
-### Disponibilidade Física (DF)
+A @fig-relacoes apresenta um exemplo prático dessas conexões nos dados reais, mostrando como os *status* dos equipamentos alimentam as categorias de horas.
 
-O ICD de **DF** indica a capacidade de um sistema estar em condições de executar uma certa função, e sua indisponibilidade é devido às horas de manutenção (HM), isto é, o indicador aponta para oportunidades de melhoria relacionados à manutenção, e associados ao status de "em manutenção".
+![Relações de apontamentos entre status e categoria de horas.](../images/fig-relacoes-apontamentos.png){#fig-relacoes}
 
-$$
-DF = \frac{HD}{HC} = \frac{HC - HM}{HC} \times 100\%
-$$
+### Definição Matemática dos Indicadores
 
-Onde:
+Cada ICD revela um aspecto de desempenho para uma unidade de trabalho:
 
-- **HD**: Horas Disponíveis
-- **HC**: Horas Calendário
-- **HM**: Horas de Manutenção
-
-### Utilização Física (UF)
-
-De forma diferente, a **taxa de utilização física (UF)** leva em consideração aspectos operacionais, sobre os quais a equipe de manutenção não tem influência, ou seja, indica o quanto da disponibilidade (HD) é utilizada efetivamente para operação (HT), logo, o tempo não utilizado para operação corresponde à ociosidade do equipamento (HO). Desta forma, temos que a ociosidade ocorre quando o equipamento está em "liberado pela manutenção" ou "parada operacional".
+#### 1. Disponibilidade Física (DF)
+Indica a capacidade do sistema estar em condições de executar sua função. Sua indisponibilidade é causada pelas horas de manutenção ($H_{man}$). Este indicador aponta para oportunidades de melhoria na equipe de manutenção.
 
 $$
-UF = \frac{HT}{HD} \times 100\%
+DF = \frac{H_{cal} - H_{man}}{H_{cal}} \times 100\% = \frac{HD}{H_{cal}} \times 100\%
 $$
 
-### Produtividade (PR)
-
-As horas trabalhadas (HT), são resultantes das ações de melhoria nos demais indicadores e utilizadas para calcular tanto UF quanto o indicador de **Produtividade (PR)**, este último, dado pelo resultado da massa total transportada (MT) dividida por horas trabalhadas (HT). Por conseguinte, a PR aponta para o ciclo dos processos de carregamento e transporte, e está associado ao status "apto para operação".
-
-$$
-PR = \frac{MT}{HT}
-$$
-
-Onde **MT** é a massa total transportada (em toneladas).
-
-### Perda de Produção por Indicadores {#sec-perda-producao}
-
-Por fim, para o caso em que um sistema produtivo não cumpre as metas de produção, é possível ainda calcular a **perda de produção por indicadores de desempenho**, verificando a representatividade em toneladas para cada indicador.
-
-As equações de cálculo da perda de produção para cada indicador são descritas a seguir:
-
-**Perda de Produção por Disponibilidade Física:**
+#### 2. Utilização Física (UF)
+Indica o quanto da disponibilidade ($HD$) é utilizada efetivamente para operação ($H_{trab}$). O tempo não utilizado corresponde à ociosidade (falta de operador, falta de frente de lavra, etc.). Este indicador reflete a eficiência da equipe de operação.
 
 $$
-PP_{DF} = (HD_{programado} - HD_{realizado}) \times PR_{realizado}
+UF = \frac{H_{trab}}{HD} \times 100\%
+$$
+
+#### 3. Produtividade (PR)
+É o resultado da massa total transportada ($MT$) dividida pelas horas trabalhadas. Reflete a eficiência do ciclo de carregamento e transporte (velocidade, fator de enchimento, etc.).
+
+$$
+PR = \frac{MT}{H_{trab}} \quad (\text{t/h})
+$$
+
+---
+
+## Cálculo de Perdas de Produção {#sec-perda-producao}
+
+Quando um sistema produtivo não cumpre as metas, é fundamental calcular a **perda de produção (em toneladas)** atribuída a cada indicador. Isso permite criar "Gráficos de Cachoeira" (*Waterfalls*) para justificar os desvios de produção.
+
+As equações baseadas na análise de variância (Realizado vs. Programado) são descritas abaixo. Considere os sufixos $_prog$ para programado e $_real$ para realizado.
+
+**1. Perda por Disponibilidade ($PP_{DF}$)**
+Quanto se deixou de produzir porque o equipamento quebrou mais do que o planejado (redução de $HD$).
+
+$$
+PP_{DF} = (HD_{prog} - HD_{real}) \times PR_{real}
 $$ {#eq-perda-df}
 
-**Perda de Produção por Utilização:**
+**2. Perda por Utilização ($PP_{UF}$)**
+Quanto se deixou de produzir porque o equipamento ficou ocioso mais do que o planejado (aumento de $H_{oci}$).
 
 $$
-PP_{UF} = (HO_{realizado} - HO_{programado}) \times PR_{programado}
+PP_{UF} = (H_{oci\_real} - H_{oci\_prog}) \times PR_{prog}
 $$ {#eq-perda-uf}
 
-**Perda de Produção por Produtividade:**
+**3. Perda por Produtividade ($PP_{PR}$)**
+Quanto se deixou de produzir porque o ritmo da operação foi menor que a meta (redução de $PR$).
 
 $$
-PP_{PR} = (PR_{programado} - PR_{realizado}) \times (HD_{programado} - HO_{realizado})
+PP_{PR} = (PR_{prog} - PR_{real}) \times H_{trab\_real}
 $$ {#eq-perda-pr}
+
+### Exemplo Prático em R
+
+O código abaixo demonstra o cálculo desses indicadores e das perdas associadas a partir de um conjunto de dados hipotético.
 
 ```{r}
 #| label: exemplo-calculo-icds
 #| warning: false
-#| tbl-cap: "Exemplo de cálculo de ICDs e perda de produção"
+#| echo: true
+#| message: false
+#| tbl-cap: "Demonstrativo de Cálculo de Perdas"
 
 library(dplyr)
 library(kableExtra)
 
-# Dados programados vs realizados
+# 1. Dados de Entrada (Simulação Programado vs Realizado)
 dados <- data.frame(
     Indicador = c(
         "Horas Calendário (HC)", "Horas Manutenção (HM)",
@@ -161,7 +186,7 @@ dados <- data.frame(
     Unidade = c("h", "h", "h", "h", "h", "t")
 )
 
-# Calcular ICDs
+# 2. Cálculo dos ICDs Percentuais (Para visualização)
 icds <- data.frame(
     Indicador = c(
         "Disponibilidade Física (DF)",
@@ -181,56 +206,73 @@ icds <- data.frame(
     Unidade = c("%", "%", "t/h")
 )
 
-# Calcular perdas
+# 3. Cálculo das Perdas (Variância / Waterfall)
+# Definição de variaveis auxiliares para facilitar o cálculo
+HD_prog <- 648
+HD_real <- 625
+HO_prog <- 65
+HO_real <- 88
+HT_real <- 537
+PR_prog <- 140000 / 583
 PR_real <- 125000 / 537
+
 perdas <- data.frame(
-    Tipo_Perda = c("Perda por DF", "Perda por UF", "Perda por PR"),
-    Calculo = c(
-        paste0("(", 648, " - ", 625, ") × ", round(PR_real, 1)),
-        paste0("(", 88, " - ", 65, ") × ", round(PR_real, 1)),
-        paste0("(", round(140000 / 583, 1), " - ", round(PR_real, 1), ") × ", 583)
+    Tipo_Perda = c(
+        "Perda por DF (Manutenção)",
+        "Perda por UF (Operação/Ociosidade)",
+        "Perda por PR (Ritmo/Ciclo)"
+    ),
+    Formula_Logica = c(
+        "(HD_prog - HD_real) * PR_real",
+        "(HO_real - HO_prog) * PR_prog",
+        "(PR_prog - PR_real) * HT_real"
     ),
     Perda_ton = c(
-        round((648 - 625) * PR_real, 0),
-        round((88 - 65) * PR_real, 0),
-        round((140000 / 583 - PR_real) * 583, 0)
+        round((HD_prog - HD_real) * PR_real, 0),
+        round((HO_real - HO_prog) * PR_prog, 0),
+        round((PR_prog - PR_real) * HT_real, 0)
     )
 )
 
-# Apresentar resultados
-kable(dados, caption = "Dados Programados vs Realizados") %>%
+# 4. Exibição das Tabelas Formatadas
+# Tabela de Dados
+k1 <- kable(dados, caption = "Tabela 1: Dados Programados vs Realizados") %>%
     kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
 
-kable(icds, caption = "Indicadores-Chave de Desempenho") %>%
+# Tabela de Indicadores
+k2 <- kable(icds, caption = "Tabela 2: Indicadores de Desempenho Calculados") %>%
     kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
 
-kable(perdas,
-    caption = "Análise de Perda de Produção",
-    col.names = c("Tipo de Perda", "Cálculo", "Perda (t)")
+# Tabela de Perdas
+k3 <- kable(perdas,
+    caption = "Tabela 3: Análise de Perda de Produção (Waterfall)",
+    col.names = c("Ofensor", "Lógica de Cálculo", "Perda (t)")
 ) %>%
-    kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
+    kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE) %>%
+    row_spec(which(perdas$Perda_ton == max(perdas$Perda_ton)), bold = T, color = "red")
+
+# Imprimir tabelas (no Quarto, elas aparecem sequencialmente)
+k1
+k2
+k3
 ```
 
-::: {.callout-important}
-## Interpretação das Perdas
-
-A análise de perda de produção permite identificar qual indicador teve maior impacto negativo na produção realizada, direcionando as ações de melhoria:
-
-- **Perda por DF**: Indica problemas de manutenção
-- **Perda por UF**: Indica problemas operacionais (ociosidade)
-- **Perda por PR**: Indica problemas de eficiência do ciclo
+::: {.callout-tip}
+## Interpretação dos Resultados
+Observe na **Tabela 3** (destacado em vermelho) qual ofensor trouxe maior impacto.
+* Se a **Perda por DF** for alta, a ação corretiva deve focar na confiabilidade do ativo ou na eficiência da oficina (MTTR).
+* Se a **Perda por UF** for alta, deve-se investigar gargalos de fila, trocas de turno ou pausas operacionais.
 :::
 
-## Resumo
+## Próximos Tópicos
 
-🔔 **Pontos-chave:**
+Nesta seção, abordaremos a construção de modelos para análise de falhas.
 
-- O ciclo de carregamento e transporte é composto por etapas sequenciais
-- Status do equipamento define responsabilidades entre operação e manutenção
-- Elementos de suporte estruturam o cálculo dos ICDs através de categorias de horas
-- DF, UF e PR são os principais indicadores de desempenho
-- Perdas de produção podem ser mensuradas por indicador
-
----
-
-**Próximo capítulo:** Fundamentos da Gestão da Manutenção
+### Diagrama de build-up
+### Política de manutenção
+* Manutenção corretiva
+* Manutenção preventiva
+### Confiabilidade e periodicidade
+* Dinâmica de ocorrência de falhas
+* Notações e terminologia
+* Gráfico de processo de contagem

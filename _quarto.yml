@@ -15,7 +15,6 @@ book:
 
   chapters:
     - index.qmd
-    - preface.qmd
     - requirements.qmd
     - setup.qmd
     - part: "Parte I - Medidas de Performance na Mineração"

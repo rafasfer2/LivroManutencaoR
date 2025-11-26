@@ -4,70 +4,74 @@ date: last-modified
 format: html
 numbered: false
 number-sections: false
-# Bem-vindo {.unnumbered}
-Bem-vindo ao livro **"Manutenção e Confiabilidade: Aplicação em R"**!
 
-::: {.callout-note appearance="simple"}
-## Sobre este Livro
+# Bem-vindo(a) {.unnumbered}
 
-sidebar: false
-:::
+Seja bem-vindo(a) a este livro técnico voltado à análise de confiabilidade e estratégias de manutenção aplicadas a sistemas industriais. A confiabilidade e a manutenção de ativos são disciplinas essenciais para garantir a eficiência operacional, a segurança dos processos e a sustentabilidade econômica de sistemas complexos.
 
-## 📚 O que você vai aprender
+Com o avanço das tecnologias de monitoramento, da coleta automatizada de dados e das ferramentas de análise estatística, tornou-se possível aplicar métodos quantitativos robustos para avaliar o desempenho de equipamentos, prever falhas e otimizar políticas de manutenção.
 
-- **Fundamentos de confiabilidade** — Conceitos, métricas e distribuições de vida útil
-- **Análise de dados de falha** — Técnicas estatísticas para dados censurados
-- **Modelagem Weibull** — Aplicação prática da distribuição mais usada em engenharia
-- **Análise de sobrevivência** — Modelos paramétricos e semiparamétricos
-- **Estratégias de manutenção** — Otimização de políticas preventivas e preditivas
-- **Machine learning** — Predição de falhas com dados de sensores
-- **Simulação Monte Carlo** — Avaliação de políticas sob incerteza
-- **Boas práticas** — Governança de dados e reprodutibilidade
+Este material foi desenvolvido com o propósito de oferecer uma introdução **prática e aplicada** aos conceitos de confiabilidade, análise de dados de falha e modelagem de vida útil, com ênfase na utilização da linguagem **R** como ferramenta principal. A abordagem adotada combina fundamentos teóricos com aplicações reais, permitindo ao leitor compreender os principais indicadores de desempenho, ajustar modelos estatísticos e implementar estratégias de manutenção baseadas em dados.
 
-## 🎯 Para quem é este livro
+## Indicadores-Chave de Desempenho (ICDs)
 
-- **Engenheiros de confiabilidade e manutenção**
-- **Analistas de dados** em contextos industriais
-- **Estudantes e pesquisadores** em engenharia e estatística
-- **Gestores técnicos** que tomam decisões baseadas em dados
+Ao longo do livro, serão abordados os principais indicadores utilizados na gestão de manutenção:
 
-## 🚀 Como usar este livro
+- **DF – Disponibilidade Física (Availability):** representa a capacidade de um sistema estar em condições de executar sua função. Sua indisponibilidade está diretamente relacionada às **Horas de Manutenção (HM)**, refletindo oportunidades de melhoria associadas ao status “em manutenção”.
 
-1. **Leia sequencialmente** — Os capítulos são progressivos
-2. **Execute os exemplos** — Todos os códigos R são reproduzíveis
-3. **Faça os exercícios** — Pratique para consolidar o aprendizado
-4. **Use como referência** — Consulte os apêndices quando necessário
+- **UF – Utilização Física:** indica o quanto da disponibilidade (**HD**) é efetivamente utilizada para operação (**HT**). A diferença entre HD e HT corresponde à **Ociosidade (HO)**, que ocorre quando o equipamento está “liberado pela manutenção” ou em “parada operacional”.
 
-## 📖 Estrutura
+- **HT – Horas Trabalhadas:** representam o tempo efetivo de operação dos ativos e são resultado direto da eficiência nos demais indicadores. Servem de base para o cálculo da UF e da produtividade.
 
-O livro está organizado em **quatro partes principais**:
+- **PR – Produtividade:** expressa a eficiência do ciclo de carregamento e transporte, sendo calculada pela razão entre a **Massa Total transportada (MT)** e as **Horas Trabalhadas (HT)**. Está associada ao status “apto para operação”.
 
-- **Parte I:** Contexto de Mineração
-- **Parte II:** Fundamentos de Confiabilidade
-- **Parte III:** Estratégias de Manutenção
-- **Parte IV:** Tópicos Avançados
+- **MTBF – Mean Time Between Failures:** tempo médio entre falhas, mede a confiabilidade do equipamento ao indicar o intervalo médio de tempo em que o sistema opera sem falhas. Quanto maior o MTBF, maior a confiabilidade.
 
-## 💻 Requisitos
+- **MTTR – Mean Time to Repair:** tempo médio para reparo, representa a eficiência da manutenção corretiva ao indicar quanto tempo, em média, é necessário para restaurar o funcionamento do equipamento após uma falha. Quanto menor o MTTR, maior a agilidade da equipe de manutenção.
 
-- **R** (versão ≥ 4.0) e **RStudio** ou VS Code
-- **Pacotes R** principais: `tidyverse`, `survival`, `flexsurv`, `ggplot2`
+## Público-Alvo
 
-Veja instruções completas em [Instalação e Ambiente](setup.qmd).
+Este livro é direcionado a:
 
-## 🔗 Recursos
+- Engenheiros de confiabilidade e manutenção que buscam ferramentas práticas para análise de dados de falha e otimização de políticas.
+- Analistas de dados interessados em aplicar modelos estatísticos e de machine learning em contextos industriais.
+- Estudantes e pesquisadores que desejam aprender técnicas de análise de sobrevivência e modelagem de confiabilidade com exemplos reais.
+- Gestores técnicos que precisam tomar decisões baseadas em dados para melhorar a performance de ativos.
 
-- **Código:** [GitHub](https://github.com/rafasfer2/QuartoBook)
-- **Dados:** Disponíveis em `resources/data/`
-- **Issues:** [GitHub Issues](https://github.com/rafasfer2/QuartoBook/issues)
+## Objetivos
+
+Ao final da leitura, o leitor será capaz de:
+
+- Compreender os conceitos fundamentais de confiabilidade, disponibilidade e manutenção.
+- Ajustar e interpretar distribuições de vida útil (Weibull, exponencial, lognormal) a dados reais.
+- Realizar análise de sobrevivência com dados censurados usando técnicas paramétricas e semiparamétricas.
+- Implementar estratégias de manutenção preventiva e preditiva com base em dados de sensores e histórico de falhas.
+- Utilizar simulação Monte Carlo para avaliar políticas de manutenção sob incerteza.
+- Aplicar boas práticas de gestão de dados e reprodutibilidade em projetos de confiabilidade.
+
+## Como Usar Este Livro
+
+Este livro é **totalmente reproduzível**. Todos os exemplos de código R estão embutidos nos capítulos e podem ser executados diretamente. Recomendamos que o leitor:
+
+1. Instale o R e o RStudio (ou utilize o VS Code com extensões de R) conforme instruções no capítulo de instalação.
+2. Execute os exemplos à medida que avança pelos capítulos para consolidar o aprendizado.
+3. Explore os exercícios propostos ao final de cada capítulo para praticar os conceitos.
+4. Utilize os dados de exemplo fornecidos na pasta `resources/data/` para replicar as análises.
+
+Os capítulos são organizados de forma **progressiva**, começando pelos fundamentos teóricos e avançando para aplicações práticas e estudos de caso. Você pode seguir a ordem proposta ou pular para capítulos específicos de acordo com suas necessidades.
+
+## Convenções
+
+- **Código R** é apresentado em blocos destacados e pode ser copiado diretamente.
+- **Figuras e tabelas** são numeradas e referenciadas ao longo do texto.
+- **Exemplos práticos** são marcados com 💡 e **exercícios** com 📝.
+- **Dicas importantes** são destacadas com 🔔.
+
+## Agradecimentos
+
+Este livro é fruto de anos de experiência prática em engenharia de confiabilidade, análise de dados e ensino. Agradeço à comunidade R, aos desenvolvedores de pacotes open-source e a todos que contribuíram com feedback e sugestões ao longo do desenvolvimento deste material.
 
 ---
 
-::: {.callout-tip}
-## Pronto para começar?
-
-Inicie pelo [Prefácio](preface.qmd) para entender melhor o contexto e objetivos deste livro, ou vá direto para [Como Usar este Livro](requirements.qmd) para configurar seu ambiente.
-:::
-
----
-
-**Boa leitura e bons estudos!** 📊✨
+**Rafael da Silva Fernandes**
+*Novembro de 2025*
