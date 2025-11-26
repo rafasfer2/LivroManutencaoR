@@ -27,22 +27,17 @@ O tempo total do ciclo influencia diretamente a produtividade da operação e é
 Como a medição de desempenho baseia-se na duração de eventos temporais, os registros (apontamentos) ocorrem sempre que o caminhão altera seu estado. Esses estados são subdivididos em quatro classes fundamentais, que definem as responsabilidades sobre os **Indicadores Chave de Desempenho (KPIs)** e a natureza dos problemas operacionais:
 
 1.  **Apto para operação**
-    * **Responsabilidade:** Equipe de Operação.
-    * Neste status, o foco está na execução eficiente do ciclo de carregamento e transporte. O principal desafio técnico reside na correta alocação dos ativos. Segundo Mohtasham et al. (2021), a seleção e o dimensionamento adequado dos equipamentos de carga e transporte são cruciais para otimizar o manuseio de materiais e, consequentemente, elevar os índices de produtividade da mina.
-
+    -   **Responsabilidade:** Equipe de Operação.
+    -   Neste status, o foco está na execução eficiente do ciclo de carregamento e transporte. O principal desafio técnico reside na correta alocação dos ativos. Segundo Mohtasham et al. (2021), a seleção e o dimensionamento adequado dos equipamentos de carga e transporte são cruciais para otimizar o manuseio de materiais e, consequentemente, elevar os índices de produtividade da mina.
 2.  **Liberado pela manutenção**
-    * **Responsabilidade:** Transição (Manutenção $\to$ Operação).
-    * Refere-se ao momento imediatamente posterior à conclusão de uma intervenção técnica e representa a transferência de custódia do ativo. Para que essa transição seja eficiente e não gere tempos mortos, é recomendável que exista um **Acordo de Nível de Serviço (ANS/SLA)** pré-estabelecido entre as equipes.
-
+    -   **Responsabilidade:** Transição (Manutenção $\to$ Operação).
+    -   Refere-se ao momento imediatamente posterior à conclusão de uma intervenção técnica e representa a transferência de custódia do ativo. Para que essa transição seja eficiente e não gere tempos mortos, é recomendável que exista um **Acordo de Nível de Serviço (ANS/SLA)** pré-estabelecido entre as equipes.
 3.  **Em manutenção**
-    * **Responsabilidade:** Equipe de Manutenção.
-    * Engloba todas as atividades necessárias para restaurar ou manter a condição do ativo. Inclui não apenas a execução (mecânica/elétrica), mas também os processos de apoio: planejamento (PCM), inspeção, programação e engenharia de confiabilidade.
-
+    -   **Responsabilidade:** Equipe de Manutenção.
+    -   Engloba todas as atividades necessárias para restaurar ou manter a condição do ativo. Inclui não apenas a execução (mecânica/elétrica), mas também os processos de apoio: planejamento (PCM), inspeção, programação e engenharia de confiabilidade.
 4.  **Parada operacional**
-    * **Responsabilidade:** Gestão da Operação / Cadeia Produtiva.
-    * Refere-se a paradas planejadas que consideram contingências maiores ou gargalos externos. Embora o ativo esteja sob custódia da operação, o gerenciamento dessas paradas geralmente ocorre em nível tático, visando o equilíbrio de toda a cadeia produtiva (e não apenas do equipamento isolado).
-
-
+    -   **Responsabilidade:** Gestão da Operação / Cadeia Produtiva.
+    -   Refere-se a paradas planejadas que consideram contingências maiores ou gargalos externos. Embora o ativo esteja sob custódia da operação, o gerenciamento dessas paradas geralmente ocorre em nível tático, visando o equilíbrio de toda a cadeia produtiva (e não apenas do equipamento isolado).
 
 ## Descrição do equipamento
 
@@ -71,8 +66,8 @@ Também denominados "equipamentos auxiliares", estes ativos não transportam min
 
 Os principais ativos desta categoria incluem:
 
-* **Motoniveladoras (Motor Graders):** Responsáveis pela manutenção e regularização das pistas de transporte, impactando diretamente a velocidade média dos caminhões e o desgaste de pneus.
-* **Tratores de Esteira (Bulldozers):** Atuam na limpeza das praças de carga (reduzindo danos aos pneus durante a manobra) e na manutenção das áreas de basculamento (pilhas de estéril ou minério).
-* **Caminhões Pipa (Water Trucks):** Realizam a umectação das vias para supressão de poeira, garantindo visibilidade e segurança operacional.
+-   **Motoniveladoras (Motor Graders):** Responsáveis pela manutenção e regularização das pistas de transporte, impactando diretamente a velocidade média dos caminhões e o desgaste de pneus.
+-   **Tratores de Esteira (Bulldozers):** Atuam na limpeza das praças de carga (reduzindo danos aos pneus durante a manobra) e na manutenção das áreas de basculamento (pilhas de estéril ou minério).
+-   **Caminhões Pipa (Water Trucks):** Realizam a umectação das vias para supressão de poeira, garantindo visibilidade e segurança operacional.
 
 A falha na operação destes equipamentos resulta imediatamente no aumento dos tempos de ciclo (**TVV** e **TVC**) e na incidência de paradas corretivas na frota de transporte devido às más condições de rodagem.

@@ -2,6 +2,9 @@ project:
   type: book
   output-dir: docs
 
+# Configuração de idioma (ESSENCIAL para a hifenização do texto justificado)
+lang: pt-BR
+
 book:
   title: "Manutenção e Confiabilidade: Aplicação em R"
   author:
@@ -12,7 +15,6 @@ book:
     style: docked
     collapse-level: 3
     search: true
-
   chapters:
     - index.qmd
     - requirements.qmd
@@ -29,23 +31,30 @@ book:
 
 bibliography: references.bib
 
-language:
-  pt-BR:
-    fig: "Figura"
-    figures: "Figuras"
-    table: "Tabela"
-    tables: "Tabelas"
-
 format:
   html:
     theme:
-      light: flatly
-      dark: darkly
+      light: flatly   # Tema base limpo
+      dark: darkly    # Modo escuro nativo
+
+    css: styles/styles-clean.css
+
+    # --- CONFIGURAÇÃO NATIVA DE FONTE (SEM CSS) ---
+    # Usa fontes serifadas do sistema (Georgia, Times) para leitura confortável
+    mainfont: "Georgia, serif"
+
+    # Usa fontes sem serifa para títulos (padrão do tema Flatly)
+    monofont: "Consolas, monospace"
+
+    # Espaçamento entre linhas (1.5 é o padrão acadêmico/livro)
+    linestretch: 1.5
+
+    # Tamanho da fonte base
+    fontsize: 1.1em
+
     code-fold: true
     code-tools: true
     toc: true
     toc-location: right
-    toc-depth: 3
     number-sections: true
-    link-external-newwindow: true
     fig-numbers: true
