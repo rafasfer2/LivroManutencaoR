@@ -15,12 +15,10 @@ book:
     search: true
 
   chapters:
-    - part: ""
-      chapters:
-        - index.qmd
-        - preface.qmd
-        - requirements.qmd
-        - setup.qmd
+    - index.qmd
+    - preface.qmd
+    - requirements.qmd
+    - setup.qmd
     - part: "Parte I - Medidas de Performance na Mineração"
       chapters:
         - chapters/part1-01-ciclo-carregamento-transporte.qmd
