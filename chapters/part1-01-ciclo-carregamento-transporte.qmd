@@ -53,22 +53,24 @@ Como a medição de desempenho baseia-se na duração de eventos temporais, os r
 
 library(DiagrammeR)
 
-grViz(
-    "digraph status {
-        graph [rankdir = TB, bgcolor = transparent]
-        node [shape = box, style = 'filled,rounded', fontname = Helvetica]
-        APO [label = 'Apto para\\nOperação', fillcolor = '#2ECC71']
-        LIB [label = 'Liberado pela\\nManutenção', fillcolor = '#3498DB']
-        MAN [label = 'Em\\nManutenção', fillcolor = '#E74C3C']
-        PAR [label = 'Parada\\nOperacional', fillcolor = '#95A5A6']
-        LIB -> APO [label = '  operação\\n  assume  ']
-        APO -> MAN [label = '  falha ou\\n  preventiva  ']
-        MAN -> LIB [label = '  conclusão\\n  serviço  ']
-        APO -> PAR [label = '  parada\\n  planejada  ']
-        PAR -> APO [label = '  retomada\\n  operação  ']
-    }",
-    output = "SVG"
-)
+grViz("
+digraph status {
+    graph [rankdir = TB, bgcolor = transparent]
+
+    node [shape = box, style = 'filled,rounded', fontname = Helvetica]
+
+    APO [label = 'Apto para\\nOperação', fillcolor = '#2ECC71']
+    LIB [label = 'Liberado pela\\nManutenção', fillcolor = '#3498DB']
+    MAN [label = 'Em\\nManutenção', fillcolor = '#E74C3C']
+    PAR [label = 'Parada\\nOperacional', fillcolor = '#95A5A6']
+
+    LIB -> APO [label = '  operação\\n  assume  ']
+    APO -> MAN [label = '  falha ou\\n  preventiva  ']
+    MAN -> LIB [label = '  conclusão\\n  serviço  ']
+    APO -> PAR [label = '  parada\\n  planejada  ']
+    PAR -> APO [label = '  retomada\\n  operação  ']
+}
+")
 ```
 
 ## Descrição do equipamento
