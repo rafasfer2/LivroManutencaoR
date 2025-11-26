@@ -2,8 +2,74 @@
 title: "Manutenção e Confiabilidade: Aplicação em R"
 author: "Rafael da Silva Fernandes"
 date: last-modified
+format: html
 numbered: false
 ---
-# Bem-vindo
+# Bem-vindo {.unnumbered}
 
-Use a barra lateral para navegar pelos capítulos.
+Bem-vindo ao livro **"Confiabilidade e Manutenção: Princípios e Prática"**!
+
+::: {.callout-note appearance="simple"}
+## Sobre este Livro
+
+Este livro fornece uma introdução **prática e aplicada** aos conceitos de confiabilidade, análise de dados de falha e modelagem de vida útil, com ênfase no uso da linguagem **R** como ferramenta principal.
+:::
+
+## 📚 O que você vai aprender
+
+- **Fundamentos de confiabilidade** — Conceitos, métricas e distribuições de vida útil
+- **Análise de dados de falha** — Técnicas estatísticas para dados censurados
+- **Modelagem Weibull** — Aplicação prática da distribuição mais usada em engenharia
+- **Análise de sobrevivência** — Modelos paramétricos e semiparamétricos
+- **Estratégias de manutenção** — Otimização de políticas preventivas e preditivas
+- **Machine learning** — Predição de falhas com dados de sensores
+- **Simulação Monte Carlo** — Avaliação de políticas sob incerteza
+- **Boas práticas** — Governança de dados e reprodutibilidade
+
+## 🎯 Para quem é este livro
+
+- **Engenheiros de confiabilidade e manutenção**
+- **Analistas de dados** em contextos industriais
+- **Estudantes e pesquisadores** em engenharia e estatística
+- **Gestores técnicos** que tomam decisões baseadas em dados
+
+## 🚀 Como usar este livro
+
+1. **Leia sequencialmente** — Os capítulos são progressivos
+2. **Execute os exemplos** — Todos os códigos R são reproduzíveis
+3. **Faça os exercícios** — Pratique para consolidar o aprendizado
+4. **Use como referência** — Consulte os apêndices quando necessário
+
+## 📖 Estrutura
+
+O livro está organizado em **quatro partes principais**:
+
+- **Parte I:** Contexto de Mineração
+- **Parte II:** Fundamentos de Confiabilidade
+- **Parte III:** Estratégias de Manutenção
+- **Parte IV:** Tópicos Avançados
+
+## 💻 Requisitos
+
+- **R** (versão ≥ 4.0) e **RStudio** ou VS Code
+- **Pacotes R** principais: `tidyverse`, `survival`, `flexsurv`, `ggplot2`
+
+Veja instruções completas em [Instalação e Ambiente](setup.qmd).
+
+## 🔗 Recursos
+
+- **Código:** [GitHub](https://github.com/rafasfer2/QuartoBook)
+- **Dados:** Disponíveis em `resources/data/`
+- **Issues:** [GitHub Issues](https://github.com/rafasfer2/QuartoBook/issues)
+
+---
+
+::: {.callout-tip}
+## Pronto para começar?
+
+Inicie pelo [Prefácio](preface.qmd) para entender melhor o contexto e objetivos deste livro, ou vá direto para [Como Usar este Livro](requirements.qmd) para configurar seu ambiente.
+:::
+
+---
+
+**Boa leitura e bons estudos!** 📊✨
