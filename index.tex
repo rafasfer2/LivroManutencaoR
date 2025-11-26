@@ -273,77 +273,1085 @@
 }
 
 \mainmatter
-\bookmarksetup{startatroot}
-
 \chapter{Manutenção e Confiabilidade: Aplicação em
 R}\label{manutenuxe7uxe3o-e-confiabilidade-aplicauxe7uxe3o-em-r}
 
-\bookmarksetup{startatroot}
+\chapter*{Bem-vindo}\label{bem-vindo}
+\addcontentsline{toc}{chapter}{Bem-vindo}
 
-\chapter{Bem-vindo}\label{bem-vindo}
+\markboth{Bem-vindo}{Bem-vindo}
 
-Use a barra lateral para navegar pelos capítulos.
+Bem-vindo ao livro \textbf{``Confiabilidade e Manutenção: Princípios e
+Prática''}!
 
-\bookmarksetup{startatroot}
+\begin{tcolorbox}[enhanced jigsaw, opacityback=0, leftrule=.75mm, colback=white, bottomrule=.15mm, arc=.35mm, toprule=.15mm, rightrule=.15mm, left=2mm, colframe=quarto-callout-note-color-frame, breakable]
+\begin{minipage}[t]{5.5mm}
+\textcolor{quarto-callout-note-color}{\faInfo}
+\end{minipage}%
+\begin{minipage}[t]{\textwidth - 5.5mm}
 
-\chapter{Prefácio}\label{prefuxe1cio}
+\vspace{-3mm}\textbf{Sobre este Livro}\vspace{3mm}
 
-\bookmarksetup{startatroot}
+Este livro fornece uma introdução \textbf{prática e aplicada} aos
+conceitos de confiabilidade, análise de dados de falha e modelagem de
+vida útil, com ênfase no uso da linguagem \textbf{R} como ferramenta
+principal.
 
-\chapter{Prefácio}\label{prefuxe1cio-1}
+\end{minipage}%
+\end{tcolorbox}
 
-Este livro é resultado de pesquisas e aplicações práticas na área de
-manutenção industrial, com foco no setor de mineração.
+\section{📚 O que você vai aprender}\label{o-que-vocuxea-vai-aprender}
 
-O objetivo é apresentar conceitos fundamentais, métodos estatísticos e
-ferramentas computacionais para análise de dados de manutenção,
-promovendo a integração entre teoria e prática.
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Fundamentos de confiabilidade} --- Conceitos, métricas e
+  distribuições de vida útil
+\item
+  \textbf{Análise de dados de falha} --- Técnicas estatísticas para
+  dados censurados
+\item
+  \textbf{Modelagem Weibull} --- Aplicação prática da distribuição mais
+  usada em engenharia
+\item
+  \textbf{Análise de sobrevivência} --- Modelos paramétricos e
+  semiparamétricos
+\item
+  \textbf{Estratégias de manutenção} --- Otimização de políticas
+  preventivas e preditivas
+\item
+  \textbf{Machine learning} --- Predição de falhas com dados de sensores
+\item
+  \textbf{Simulação Monte Carlo} --- Avaliação de políticas sob
+  incerteza
+\item
+  \textbf{Boas práticas} --- Governança de dados e reprodutibilidade
+\end{itemize}
 
-Esperamos que este conteúdo contribua para o desenvolvimento
-profissional e acadêmico dos leitores.
+\section{🎯 Para quem é este livro}\label{para-quem-uxe9-este-livro}
 
-\bookmarksetup{startatroot}
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Engenheiros de confiabilidade e manutenção}
+\item
+  \textbf{Analistas de dados} em contextos industriais
+\item
+  \textbf{Estudantes e pesquisadores} em engenharia e estatística
+\item
+  \textbf{Gestores técnicos} que tomam decisões baseadas em dados
+\end{itemize}
 
-\chapter{Requisitos e Ambiente}\label{requisitos-e-ambiente}
+\section{🚀 Como usar este livro}\label{como-usar-este-livro}
 
-\bookmarksetup{startatroot}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Leia sequencialmente} --- Os capítulos são progressivos
+\item
+  \textbf{Execute os exemplos} --- Todos os códigos R são reproduzíveis
+\item
+  \textbf{Faça os exercícios} --- Pratique para consolidar o aprendizado
+\item
+  \textbf{Use como referência} --- Consulte os apêndices quando
+  necessário
+\end{enumerate}
 
-\chapter{Requisitos e Ambiente}\label{requisitos-e-ambiente-1}
+\section{📖 Estrutura}\label{estrutura}
 
-Este livro utiliza a linguagem de programação R para análises e
-visualizações. Para reproduzir os resultados, você precisa ter os
-seguintes pacotes instalados:
+O livro está organizado em \textbf{quatro partes principais}:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Parte I:} Contexto de Mineração
+\item
+  \textbf{Parte II:} Fundamentos de Confiabilidade
+\item
+  \textbf{Parte III:} Estratégias de Manutenção
+\item
+  \textbf{Parte IV:} Tópicos Avançados
+\end{itemize}
+
+\section{💻 Requisitos}\label{requisitos}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{R} (versão ≥ 4.0) e \textbf{RStudio} ou VS Code
+\item
+  \textbf{Pacotes R} principais: \texttt{tidyverse}, \texttt{survival},
+  \texttt{flexsurv}, \texttt{ggplot2}
+\end{itemize}
+
+Veja instruções completas em \href{setup.qmd}{Instalação e Ambiente}.
+
+\section{🔗 Recursos}\label{recursos}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Código:}
+  \href{https://github.com/rafasfer2/QuartoBook}{GitHub}
+\item
+  \textbf{Dados:} Disponíveis em \texttt{resources/data/}
+\item
+  \textbf{Issues:}
+  \href{https://github.com/rafasfer2/QuartoBook/issues}{GitHub Issues}
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{tcolorbox}[enhanced jigsaw, opacityback=0, leftrule=.75mm, colback=white, bottomrule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, rightrule=.15mm, colframe=quarto-callout-tip-color-frame, coltitle=black, titlerule=0mm, opacitybacktitle=0.6, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Pronto para começar?}, toprule=.15mm, toptitle=1mm, arc=.35mm, left=2mm, bottomtitle=1mm, breakable]
+
+Inicie pelo \href{preface.qmd}{Prefácio} para entender melhor o contexto
+e objetivos deste livro, ou vá direto para \href{requirements.qmd}{Como
+Usar este Livro} para configurar seu ambiente.
+
+\end{tcolorbox}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Boa leitura e bons estudos!} 📊✨
+
+\part{}
+
+\chapter*{Prefácio}\label{prefuxe1cio}
+\addcontentsline{toc}{chapter}{Prefácio}
+
+\markboth{Prefácio}{Prefácio}
+
+\section*{Sobre este Livro}\label{sobre-este-livro-1}
+\addcontentsline{toc}{section}{Sobre este Livro}
+
+\markright{Sobre este Livro}
+
+A \textbf{confiabilidade} e a \textbf{manutenção} de equipamentos e
+sistemas são pilares fundamentais para a operação eficiente e segura de
+indústrias em todo o mundo. Com o avanço da coleta de dados, da
+computação estatística e do aprendizado de máquina, a análise
+quantitativa de falhas e a otimização de estratégias de manutenção
+tornaram-se mais acessíveis e poderosas do que nunca.
+
+Este livro tem como objetivo fornecer uma introdução \textbf{prática e
+aplicada} aos conceitos de confiabilidade, análise de dados de falha e
+modelagem de vida útil, com ênfase no uso da linguagem \textbf{R} como
+ferramenta principal. Ele é direcionado a engenheiros, analistas de
+dados, gestores de manutenção, estudantes e profissionais que desejam
+aplicar métodos estatísticos modernos para melhorar a disponibilidade,
+reduzir custos e otimizar políticas de manutenção.
+
+\section*{Público-Alvo}\label{puxfablico-alvo}
+\addcontentsline{toc}{section}{Público-Alvo}
+
+\markright{Público-Alvo}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Engenheiros de confiabilidade e manutenção} que buscam
+  ferramentas práticas para análise de dados de falha e otimização de
+  políticas.
+\item
+  \textbf{Analistas de dados} interessados em aplicar modelos
+  estatísticos e de machine learning em contextos industriais.
+\item
+  \textbf{Estudantes e pesquisadores} que desejam aprender técnicas de
+  análise de sobrevivência e modelagem de confiabilidade com exemplos
+  reais.
+\item
+  \textbf{Gestores técnicos} que precisam tomar decisões baseadas em
+  dados para melhorar a performance de ativos.
+\end{itemize}
+
+\section*{Objetivos}\label{objetivos}
+\addcontentsline{toc}{section}{Objetivos}
+
+\markright{Objetivos}
+
+Ao final deste livro, o leitor será capaz de:
+
+\begin{itemize}
+\tightlist
+\item
+  Compreender os \textbf{conceitos fundamentais} de confiabilidade,
+  disponibilidade e manutenção.
+\item
+  Ajustar e interpretar \textbf{distribuições de vida útil} (Weibull,
+  exponencial, lognormal) a dados reais.
+\item
+  Realizar \textbf{análise de sobrevivência} com dados censurados usando
+  técnicas paramétricas e semiparamétricas.
+\item
+  Implementar \textbf{estratégias de manutenção preventiva e preditiva}
+  com base em dados de sensores e histórico de falhas.
+\item
+  Utilizar \textbf{simulação Monte Carlo} para avaliar políticas de
+  manutenção sob incerteza.
+\item
+  Aplicar boas práticas de \textbf{gestão de dados} e reprodutibilidade
+  em projetos de confiabilidade.
+\end{itemize}
+
+\section*{Como Usar este Livro}\label{como-usar-este-livro-1}
+\addcontentsline{toc}{section}{Como Usar este Livro}
+
+\markright{Como Usar este Livro}
+
+Este livro é \textbf{totalmente reproduzível}. Todos os exemplos de
+código R estão embutidos nos capítulos e podem ser executados
+diretamente. Recomendamos que o leitor:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Instale o R e o RStudio} (ou use o VS Code com extensões de R)
+  seguindo as instruções no capítulo de instalação.
+\item
+  \textbf{Execute os exemplos} à medida que avança pelos capítulos para
+  consolidar o aprendizado.
+\item
+  \textbf{Explore os exercícios} propostos ao final de cada capítulo
+  para praticar os conceitos.
+\item
+  \textbf{Utilize os dados de exemplo} fornecidos na pasta
+  \texttt{resources/data/} para replicar as análises.
+\end{enumerate}
+
+Os capítulos são organizados de forma \textbf{progressiva}, começando
+pelos fundamentos teóricos e avançando para aplicações práticas e
+estudos de caso. Você pode seguir a ordem proposta ou pular para
+capítulos específicos de acordo com suas necessidades.
+
+\section*{Ferramentas e Recursos}\label{ferramentas-e-recursos}
+\addcontentsline{toc}{section}{Ferramentas e Recursos}
+
+\markright{Ferramentas e Recursos}
+
+Este livro foi desenvolvido com:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Quarto} --- Sistema de publicação científica e técnica que
+  integra código, texto e visualizações.
+\item
+  \textbf{R} --- Linguagem de programação estatística open-source com
+  vasto ecossistema de pacotes.
+\item
+  \textbf{Pacotes R principais} --- \texttt{survival},
+  \texttt{flexsurv}, \texttt{WeibullR}, \texttt{reliability},
+  \texttt{tidyverse}, \texttt{ggplot2}, entre outros.
+\end{itemize}
+
+Todos os materiais suplementares, incluindo dados, scripts e recursos
+adicionais, estão disponíveis no diretório \texttt{resources/} do
+projeto.
+
+\section*{Convenções}\label{convenuxe7uxf5es}
+\addcontentsline{toc}{section}{Convenções}
+
+\markright{Convenções}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Código R} é apresentado em blocos destacados e pode ser
+  copiado diretamente.
+\item
+  \textbf{Figuras e tabelas} são numeradas e referenciadas ao longo do
+  texto.
+\item
+  \textbf{Exemplos práticos} são marcados com 💡 e \textbf{exercícios}
+  com 📝.
+\item
+  \textbf{Dicas importantes} são destacadas com 🔔.
+\end{itemize}
+
+\section*{Agradecimentos}\label{agradecimentos}
+\addcontentsline{toc}{section}{Agradecimentos}
+
+\markright{Agradecimentos}
+
+Este livro é fruto de anos de experiência prática em engenharia de
+confiabilidade, análise de dados e ensino. Agradeço à comunidade R, aos
+desenvolvedores de pacotes open-source e a todos que contribuíram com
+feedback e sugestões ao longo do desenvolvimento deste material.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Rafael da Silva Fernandes} \emph{Novembro de 2025}
+
+\chapter*{Como Usar este Livro}\label{como-usar-este-livro-2}
+\addcontentsline{toc}{chapter}{Como Usar este Livro}
+
+\markboth{Como Usar este Livro}{Como Usar este Livro}
+
+\section*{Convenções e
+Organização}\label{convenuxe7uxf5es-e-organizauxe7uxe3o}
+\addcontentsline{toc}{section}{Convenções e Organização}
+
+\markright{Convenções e Organização}
+
+Este livro foi desenvolvido para ser \textbf{prático, reproduzível e
+didático}. Todos os exemplos de código R podem ser executados
+diretamente, e os dados utilizados estão disponíveis no diretório
+\texttt{resources/data/}.
+
+\subsection*{Organização dos
+Capítulos}\label{organizauxe7uxe3o-dos-capuxedtulos}
+\addcontentsline{toc}{subsection}{Organização dos Capítulos}
+
+O livro está dividido em \textbf{quatro partes principais}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Fundamentos e Teoria} --- Conceitos básicos de confiabilidade,
+  distribuições de vida útil e métodos de estimação.
+\item
+  \textbf{Análise e Modelagem Prática} --- Técnicas de análise de dados
+  de falha, modelagem Weibull e análise de sobrevivência.
+\item
+  \textbf{Estratégias de Manutenção} --- Manutenção preventiva,
+  preditiva e modelagem de sistemas complexos.
+\item
+  \textbf{Métodos Avançados e Aplicações} --- Simulação Monte Carlo,
+  estudos de caso industriais e governança de dados.
+\end{enumerate}
+
+Cada capítulo inclui:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Teoria concisa} --- Explicação dos conceitos fundamentais.
+\item
+  \textbf{Exemplos práticos com R} --- Código reproduzível e comentado.
+\item
+  \textbf{Visualizações e tabelas} --- Gráficos interpretativos e
+  resumos estatísticos.
+\item
+  \textbf{Exercícios} 📝 --- Atividades para consolidar o aprendizado.
+\end{itemize}
+
+\subsection*{Convenções de Código}\label{convenuxe7uxf5es-de-cuxf3digo}
+\addcontentsline{toc}{subsection}{Convenções de Código}
+
+\chapter*{Exemplo de código R}\label{exemplo-de-cuxf3digo-r}
+\addcontentsline{toc}{chapter}{Exemplo de código R}
+
+\markboth{Exemplo de código R}{Exemplo de código R}
+
+library(dplyr) library(ggplot2)
+
+\chapter*{Carregar dados de exemplo}\label{carregar-dados-de-exemplo}
+\addcontentsline{toc}{chapter}{Carregar dados de exemplo}
+
+\markboth{Carregar dados de exemplo}{Carregar dados de exemplo}
+
+data \textless- read.csv(``resources/data/falhas.csv'')
+
+\chapter*{Análise exploratória}\label{anuxe1lise-exploratuxf3ria}
+\addcontentsline{toc}{chapter}{Análise exploratória}
+
+\markboth{Análise exploratória}{Análise exploratória}
+
+summary(data)
+
+\begin{verbatim}
+
+- **`#| eval: false`** indica que o código não será executado automaticamente (apenas exibido).
+- **`#| echo: true`** indica que o código será mostrado no output final.
+
+### Símbolos e Ícones
+
+- 💡 **Exemplo prático** — Demonstração de aplicação real.
+- 📝 **Exercício** — Atividade proposta para o leitor.
+- 🔔 **Dica importante** — Informação relevante ou ponto de atenção.
+- ⚠️ **Atenção** — Cuidado ou limitação a considerar.
+
+### Referências Cruzadas
+
+Figuras, tabelas e equações são numeradas e referenciadas ao longo do texto:
+
+ - **Figuras:** `@fig-weibull`
+ - **Tabelas:** `@tbl-mtbf`
+ - **Equações:** `@eq-confiabilidade`
+
+Equação de confiabilidade (definição usada ao longo do livro):
+
+$$
+R(t) = e^{-\lambda t}
+$$ {#eq-confiabilidade}
+
+::: {.cell}
+::: {.cell-output-display}
+![Distribuição Weibull ajustada aos tempos de falha de equipamentos](requirements_files/figure-pdf/fig-weibull-1.pdf){#fig-weibull}
+:::
+:::
+
+
+
+
+
+
+::: {#tbl-mtbf .cell tbl-cap='Cálculo de MTBF por tipo de equipamento'}
+::: {.cell-output-display}
+`````{=html}
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Tipo de Equipamento </th>
+   <th style="text-align:center;"> Nº de Falhas </th>
+   <th style="text-align:center;"> MTBF (horas) </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> escavadeira </td>
+   <td style="text-align:center;"> 51 </td>
+   <td style="text-align:center;"> 1350.4 </td>
+  </tr>
+</tbody>
+</table>
+\end{verbatim}
+
+::: :::
+
+\section*{Requisitos de Software}\label{requisitos-de-software}
+\addcontentsline{toc}{section}{Requisitos de Software}
+
+\markright{Requisitos de Software}
+
+Para reproduzir os exemplos deste livro, você precisará de:
+
+\subsection*{R (versão ≥ 4.0)}\label{r-versuxe3o-4.0}
+\addcontentsline{toc}{subsection}{R (versão ≥ 4.0)}
+
+R é a linguagem de programação principal utilizada. Faça o download em:
+\url{https://www.r-project.org/}
+
+\subsection*{RStudio Desktop ou VS
+Code}\label{rstudio-desktop-ou-vs-code}
+\addcontentsline{toc}{subsection}{RStudio Desktop ou VS Code}
+
+\textbf{RStudio} é o IDE recomendado para desenvolvimento em R:
+\url{https://posit.co/download/rstudio-desktop/}
+
+Alternativamente, você pode usar \textbf{VS Code} com as extensões: - R
+(reditorsupport.r) - Quarto (quarto.quarto)
+
+\subsection*{Quarto CLI}\label{quarto-cli}
+\addcontentsline{toc}{subsection}{Quarto CLI}
+
+Este livro foi desenvolvido com \textbf{Quarto}, um sistema de
+publicação científica. Instale em:
+\url{https://quarto.org/docs/get-started/}
+
+\subsection*{Pacotes R Necessários}\label{pacotes-r-necessuxe1rios}
+\addcontentsline{toc}{subsection}{Pacotes R Necessários}
+
+Os seguintes pacotes R são utilizados ao longo do livro:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{install.packages}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"ggplot2"}\NormalTok{, }\StringTok{"DiagrammeR"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{, }\StringTok{"knitr"}\NormalTok{, }\StringTok{"rmarkdown"}\NormalTok{))}
+\CommentTok{\# Manipulação e visualização de dados}
+\FunctionTok{install.packages}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{, }\StringTok{"tidyr"}\NormalTok{, }\StringTok{"readr"}\NormalTok{, }\StringTok{"ggplot2"}\NormalTok{, }\StringTok{"plotly"}\NormalTok{))}
+
+\CommentTok{\# Análise de confiabilidade e sobrevivência}
+\FunctionTok{install.packages}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"survival"}\NormalTok{, }\StringTok{"flexsurv"}\NormalTok{, }\StringTok{"WeibullR"}\NormalTok{, }\StringTok{"reliability"}\NormalTok{))}
+
+\CommentTok{\# Tabelas e relatórios}
+\FunctionTok{install.packages}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"knitr"}\NormalTok{, }\StringTok{"kableExtra"}\NormalTok{, }\StringTok{"DT"}\NormalTok{, }\StringTok{"broom"}\NormalTok{))}
+
+\CommentTok{\# Machine learning e manutenção preditiva}
+\FunctionTok{install.packages}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"caret"}\NormalTok{, }\StringTok{"randomForest"}\NormalTok{, }\StringTok{"prophet"}\NormalTok{, }\StringTok{"anomalize"}\NormalTok{))}
+
+\CommentTok{\# Simulação}
+\FunctionTok{install.packages}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"simmer"}\NormalTok{, }\StringTok{"MASS"}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
-Além dos pacotes listados acima, recomenda-se o uso do RStudio ou Quarto
-para melhor experiência na execução dos exemplos e visualização dos
-resultados.
+Para instalar todos os pacotes de uma vez:
 
-Todos os códigos apresentados podem ser executados em ambiente local ou
-em plataformas online compatíveis com R.
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{source}\NormalTok{(}\StringTok{"resources/install\_packages.R"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
-\bookmarksetup{startatroot}
+\section*{Estrutura de Arquivos e
+Dados}\label{estrutura-de-arquivos-e-dados}
+\addcontentsline{toc}{section}{Estrutura de Arquivos e Dados}
 
-\chapter{Setup}\label{setup}
+\markright{Estrutura de Arquivos e Dados}
 
-\bookmarksetup{startatroot}
+O projeto deste livro está organizado da seguinte forma:
 
-\chapter{Setup}\label{setup-1}
+\begin{verbatim}
+QuartoBook/
+├── _quarto.yml              # Configuração do livro
+├── index.qmd                # Página inicial
+├── preface.qmd              # Prefácio
+├── requirements.qmd         # Este arquivo
+├── setup.qmd                # Instruções de instalação
+├── chapters/                # Capítulos principais
+│   ├── 01-fundamentos.qmd
+│   ├── 02-distribuicoes.qmd
+│   └── ...
+├── appendices/              # Apêndices
+│   ├── A-pacotes.qmd
+│   └── ...
+├── resources/               # Recursos adicionais
+│   ├── data/                # Dados de exemplo (CSV, RDS)
+│   ├── scripts/             # Scripts R auxiliares
+│   └── images/              # Imagens e figuras
+├── docs/                    # Output renderizado (HTML)
+└── references.bib           # Bibliografia
+\end{verbatim}
 
-Para começar, certifique-se de que o R e os pacotes necessários estão
-instalados em seu computador.
+\subsection*{Dados de Exemplo}\label{dados-de-exemplo}
+\addcontentsline{toc}{subsection}{Dados de Exemplo}
 
-Siga as instruções do capítulo anterior para instalar os pacotes.
-Recomenda-se também configurar o diretório de trabalho e garantir que os
-arquivos de dados estejam acessíveis.
+Todos os datasets utilizados nos exemplos estão disponíveis em
+\texttt{resources/data/}:
 
-Caso utilize o Quarto, basta abrir este projeto e navegar pelos
-capítulos para acompanhar os exemplos e exercícios.
+\begin{itemize}
+\tightlist
+\item
+  \texttt{falhas\_bombas.csv} --- Dados de falha de bombas industriais.
+\item
+  \texttt{sensores\_compressor.csv} --- Dados de sensores para
+  manutenção preditiva.
+\item
+  \texttt{historico\_motores.rds} --- Histórico de manutenção de motores
+  elétricos.
+\end{itemize}
+
+\section*{Como Executar os Exemplos}\label{como-executar-os-exemplos}
+\addcontentsline{toc}{section}{Como Executar os Exemplos}
+
+\markright{Como Executar os Exemplos}
+
+\subsection*{No RStudio}\label{no-rstudio}
+\addcontentsline{toc}{subsection}{No RStudio}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Abra o arquivo \texttt{.qmd} desejado.
+\item
+  Clique em \textbf{``Run''} para executar os chunks de código
+  individualmente.
+\item
+  Use \textbf{Ctrl+Shift+K} para renderizar o documento completo.
+\end{enumerate}
+
+\subsection*{No VS Code}\label{no-vs-code}
+\addcontentsline{toc}{subsection}{No VS Code}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Instale as extensões Quarto e R.
+\item
+  Abra o arquivo \texttt{.qmd}.
+\item
+  Use \textbf{Ctrl+Enter} para executar linhas de código.
+\item
+  Execute \texttt{quarto\ preview} no terminal para visualizar o livro
+  completo.
+\end{enumerate}
+
+\subsection*{Via Terminal}\label{via-terminal}
+\addcontentsline{toc}{subsection}{Via Terminal}
+
+Para renderizar o livro completo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{quarto}\NormalTok{ render}
+\end{Highlighting}
+\end{Shaded}
+
+Para visualizar com hot reload:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{quarto}\NormalTok{ preview}
+\end{Highlighting}
+\end{Shaded}
+
+\section*{Reprodutibilidade}\label{reprodutibilidade}
+\addcontentsline{toc}{section}{Reprodutibilidade}
+
+\markright{Reprodutibilidade}
+
+Este livro foi desenvolvido com práticas de \textbf{ciência de dados
+reproduzível}:
+
+\begin{itemize}
+\tightlist
+\item
+  Todos os dados de exemplo estão versionados.
+\item
+  Códigos são testados e validados.
+\item
+  Sessões R são gerenciadas com \texttt{.Rprofile}.
+\item
+  Outputs são congelados com \texttt{freeze:\ auto} no Quarto.
+\end{itemize}
+
+Para garantir reprodutibilidade, recomendamos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Verificar versão do R}
+\NormalTok{R.version.string}
+
+\CommentTok{\# Listar pacotes instalados}
+\FunctionTok{installed.packages}\NormalTok{()[, }\FunctionTok{c}\NormalTok{(}\StringTok{"Package"}\NormalTok{, }\StringTok{"Version"}\NormalTok{)]}
+\end{Highlighting}
+\end{Shaded}
+
+\section*{Dúvidas e Suporte}\label{duxfavidas-e-suporte}
+\addcontentsline{toc}{section}{Dúvidas e Suporte}
+
+\markright{Dúvidas e Suporte}
+
+Para dúvidas, sugestões ou relato de erros:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{GitHub Issues:}
+  \url{https://github.com/SEU_USER/QuartoBook/issues}
+\item
+  \textbf{Email:} rafael@example.com
+\item
+  \textbf{Email:} \texttt{rafael@example.com}
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Boa leitura e bons estudos!} 🚀
+
+\chapter*{Instalação e Ambiente}\label{instalauxe7uxe3o-e-ambiente}
+\addcontentsline{toc}{chapter}{Instalação e Ambiente}
+
+\markboth{Instalação e Ambiente}{Instalação e Ambiente}
+
+Este capítulo fornece instruções detalhadas para configurar o ambiente
+de trabalho necessário para reproduzir os exemplos deste livro.
+
+\section*{Instalação do R}\label{instalauxe7uxe3o-do-r}
+\addcontentsline{toc}{section}{Instalação do R}
+
+\markright{Instalação do R}
+
+\subsection*{Windows}\label{windows}
+\addcontentsline{toc}{subsection}{Windows}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Acesse \url{https://cran.r-project.org/bin/windows/base/}
+\item
+  Baixe o instalador mais recente (ex: \texttt{R-4.5.1-win.exe})
+\item
+  Execute o instalador e siga as instruções padrão
+\end{enumerate}
+
+\subsection*{macOS}\label{macos}
+\addcontentsline{toc}{subsection}{macOS}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Acesse \url{https://cran.r-project.org/bin/macosx/}
+\item
+  Baixe o arquivo \texttt{.pkg} apropriado para sua versão do macOS
+\item
+  Execute o instalador
+\end{enumerate}
+
+\subsection*{Linux (Ubuntu/Debian)}\label{linux-ubuntudebian}
+\addcontentsline{toc}{subsection}{Linux (Ubuntu/Debian)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Adicionar repositório CRAN}
+\FunctionTok{sudo}\NormalTok{ apt update}
+\FunctionTok{sudo}\NormalTok{ apt install }\AttributeTok{{-}y}\NormalTok{ software{-}properties{-}common dirmngr}
+\FunctionTok{wget} \AttributeTok{{-}qO{-}}\NormalTok{ https://cloud.r{-}project.org/bin/linux/ubuntu/marutter\_pubkey.asc }\KeywordTok{|} \FunctionTok{sudo}\NormalTok{ tee }\AttributeTok{{-}a}\NormalTok{ /etc/apt/trusted.gpg.d/cran\_ubuntu\_key.asc}
+
+\CommentTok{\# Adicionar repositório}
+\FunctionTok{sudo}\NormalTok{ add{-}apt{-}repository }\StringTok{"deb https://cloud.r{-}project.org/bin/linux/ubuntu }\VariableTok{$(}\ExtensionTok{lsb\_release} \AttributeTok{{-}cs}\VariableTok{)}\StringTok{{-}cran40/"}
+
+\CommentTok{\# Instalar R}
+\FunctionTok{sudo}\NormalTok{ apt update}
+\FunctionTok{sudo}\NormalTok{ apt install }\AttributeTok{{-}y}\NormalTok{ r{-}base r{-}base{-}dev}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection*{Verificar Instalação}\label{verificar-instalauxe7uxe3o}
+\addcontentsline{toc}{subsection}{Verificar Instalação}
+
+Abra um terminal ou prompt de comando e execute:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{R} \AttributeTok{{-}{-}version}
+\end{Highlighting}
+\end{Shaded}
+
+Você deve ver algo como:
+
+\begin{verbatim}
+R version 4.5.1 (2024-06-14) -- "Beagle Scouts"
+\end{verbatim}
+
+\section*{Instalação do RStudio
+Desktop}\label{instalauxe7uxe3o-do-rstudio-desktop}
+\addcontentsline{toc}{section}{Instalação do RStudio Desktop}
+
+\markright{Instalação do RStudio Desktop}
+
+RStudio é o IDE (Ambiente de Desenvolvimento Integrado) mais popular
+para R.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Acesse \url{https://posit.co/download/rstudio-desktop/}
+\item
+  Baixe o instalador para seu sistema operacional
+\item
+  Execute o instalador
+\end{enumerate}
+
+\section*{Instalação do Quarto}\label{instalauxe7uxe3o-do-quarto}
+\addcontentsline{toc}{section}{Instalação do Quarto}
+
+\markright{Instalação do Quarto}
+
+Quarto é o sistema de publicação utilizado para criar este livro.
+
+\subsection*{Windows}\label{windows-1}
+\addcontentsline{toc}{subsection}{Windows}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Acesse \url{https://quarto.org/docs/get-started/}
+\item
+  Baixe o instalador \texttt{.msi} para Windows
+\item
+  Execute o instalador
+\end{enumerate}
+
+\subsection*{macOS}\label{macos-1}
+\addcontentsline{toc}{subsection}{macOS}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Via Homebrew}
+\ExtensionTok{brew}\NormalTok{ install }\AttributeTok{{-}{-}cask}\NormalTok{ quarto}
+\end{Highlighting}
+\end{Shaded}
+
+Ou baixe o instalador \texttt{.pkg} do site oficial.
+
+\subsection*{Linux}\label{linux}
+\addcontentsline{toc}{subsection}{Linux}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Ubuntu/Debian}
+\FunctionTok{wget}\NormalTok{ https://github.com/quarto{-}dev/quarto{-}cli/releases/download/v1.6.39/quarto{-}1.6.39{-}linux{-}amd64.deb}
+\FunctionTok{sudo}\NormalTok{ dpkg }\AttributeTok{{-}i}\NormalTok{ quarto{-}1.6.39{-}linux{-}amd64.deb}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection*{Verificar Instalação}\label{verificar-instalauxe7uxe3o-1}
+\addcontentsline{toc}{subsection}{Verificar Instalação}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{quarto} \AttributeTok{{-}{-}version}
+\end{Highlighting}
+\end{Shaded}
+
+\section*{Instalação de Pacotes R}\label{instalauxe7uxe3o-de-pacotes-r}
+\addcontentsline{toc}{section}{Instalação de Pacotes R}
+
+\markright{Instalação de Pacotes R}
+
+\subsection*{Pacotes Essenciais}\label{pacotes-essenciais}
+\addcontentsline{toc}{subsection}{Pacotes Essenciais}
+
+Abra o R ou RStudio e execute:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Manipulação e visualização de dados}
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{) }\CommentTok{\# Inclui dplyr, tidyr, ggplot2, readr, etc.}
+
+\CommentTok{\# Análise de confiabilidade e sobrevivência}
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"survival"}\NormalTok{)}
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"flexsurv"}\NormalTok{)}
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"WeibullR"}\NormalTok{)}
+
+\CommentTok{\# Tabelas e relatórios}
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"knitr"}\NormalTok{)}
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"kableExtra"}\NormalTok{)}
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"DT"}\NormalTok{)}
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"broom"}\NormalTok{)}
+
+\CommentTok{\# Visualização avançada}
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"plotly"}\NormalTok{)}
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"patchwork"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection*{Pacotes para Manutenção
+Preditiva}\label{pacotes-para-manutenuxe7uxe3o-preditiva}
+\addcontentsline{toc}{subsection}{Pacotes para Manutenção Preditiva}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"caret"}\NormalTok{) }\CommentTok{\# Machine learning}
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"randomForest"}\NormalTok{) }\CommentTok{\# Random Forest}
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"prophet"}\NormalTok{) }\CommentTok{\# Séries temporais (Facebook Prophet)}
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"anomalize"}\NormalTok{) }\CommentTok{\# Detecção de anomalias}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection*{Instalação via Script}\label{instalauxe7uxe3o-via-script}
+\addcontentsline{toc}{subsection}{Instalação via Script}
+
+Para instalar todos os pacotes de uma vez, crie o arquivo
+\texttt{resources/install\_packages.R}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Script de instalação completa}
+\NormalTok{packages }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}
+    \CommentTok{\# Manipulação de dados}
+    \StringTok{"tidyverse"}\NormalTok{, }\StringTok{"dplyr"}\NormalTok{, }\StringTok{"tidyr"}\NormalTok{, }\StringTok{"readr"}\NormalTok{, }\StringTok{"lubridate"}\NormalTok{,}
+
+    \CommentTok{\# Visualização}
+    \StringTok{"ggplot2"}\NormalTok{, }\StringTok{"plotly"}\NormalTok{, }\StringTok{"patchwork"}\NormalTok{, }\StringTok{"ggthemes"}\NormalTok{,}
+
+    \CommentTok{\# Confiabilidade e sobrevivência}
+    \StringTok{"survival"}\NormalTok{, }\StringTok{"flexsurv"}\NormalTok{, }\StringTok{"WeibullR"}\NormalTok{, }\StringTok{"reliability"}\NormalTok{,}
+
+    \CommentTok{\# Tabelas e reports}
+    \StringTok{"knitr"}\NormalTok{, }\StringTok{"kableExtra"}\NormalTok{, }\StringTok{"DT"}\NormalTok{, }\StringTok{"broom"}\NormalTok{, }\StringTok{"gt"}\NormalTok{,}
+
+    \CommentTok{\# Machine learning}
+    \StringTok{"caret"}\NormalTok{, }\StringTok{"randomForest"}\NormalTok{, }\StringTok{"xgboost"}\NormalTok{,}
+
+    \CommentTok{\# Séries temporais}
+    \StringTok{"prophet"}\NormalTok{, }\StringTok{"anomalize"}\NormalTok{, }\StringTok{"forecast"}\NormalTok{,}
+
+    \CommentTok{\# Simulação}
+    \StringTok{"simmer"}\NormalTok{, }\StringTok{"MASS"}
+\NormalTok{)}
+
+\CommentTok{\# Verificar e instalar apenas os que faltam}
+\NormalTok{new\_packages }\OtherTok{\textless{}{-}}\NormalTok{ packages[}\SpecialCharTok{!}\NormalTok{(packages }\SpecialCharTok{\%in\%} \FunctionTok{installed.packages}\NormalTok{()[, }\StringTok{"Package"}\NormalTok{])]}
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{length}\NormalTok{(new\_packages)) }\FunctionTok{install.packages}\NormalTok{(new\_packages)}
+
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Pacotes instalados com sucesso!}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Execute no R:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{source}\NormalTok{(}\StringTok{"resources/install\_packages.R"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section*{Configuração do
+Ambiente}\label{configurauxe7uxe3o-do-ambiente}
+\addcontentsline{toc}{section}{Configuração do Ambiente}
+
+\markright{Configuração do Ambiente}
+
+\subsection*{\texorpdfstring{Arquivo
+\texttt{.Rprofile}}{Arquivo .Rprofile}}\label{arquivo-.rprofile}
+\addcontentsline{toc}{subsection}{Arquivo \texttt{.Rprofile}}
+
+Crie um arquivo \texttt{.Rprofile} na raiz do projeto para configurações
+globais:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# .Rprofile}
+\FunctionTok{options}\NormalTok{(}
+  \AttributeTok{repos =} \FunctionTok{c}\NormalTok{(}\AttributeTok{CRAN =} \StringTok{"https://cloud.r{-}project.org/"}\NormalTok{),}
+  \AttributeTok{scipen =} \DecValTok{999}\NormalTok{,           }\CommentTok{\# Desabilitar notação científica}
+  \AttributeTok{stringsAsFactors =} \ConstantTok{FALSE}\NormalTok{,}
+  \AttributeTok{max.print =} \DecValTok{100}
+\NormalTok{)}
+
+\CommentTok{\# Carregar pacotes frequentes automaticamente}
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{interactive}\NormalTok{()) \{}
+  \FunctionTok{suppressMessages}\NormalTok{(\{}
+    \FunctionTok{library}\NormalTok{(tidyverse)}
+    \FunctionTok{library}\NormalTok{(here)}
+\NormalTok{  \})}
+  \FunctionTok{cat}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{ Ambiente R configurado! }\SpecialCharTok{\textbackslash{}n\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection*{\texorpdfstring{Arquivo
+\texttt{.Renviron}}{Arquivo .Renviron}}\label{arquivo-.renviron}
+\addcontentsline{toc}{subsection}{Arquivo \texttt{.Renviron}}
+
+Para variáveis de ambiente (ex: chaves de API):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# .Renviron}
+\VariableTok{R\_MAX\_NUM\_DLLS}\OperatorTok{=}\NormalTok{300}
+\end{Highlighting}
+\end{Shaded}
+
+\section*{VS Code (Alternativa ao
+RStudio)}\label{vs-code-alternativa-ao-rstudio}
+\addcontentsline{toc}{section}{VS Code (Alternativa ao RStudio)}
+
+\markright{VS Code (Alternativa ao RStudio)}
+
+Se preferir usar VS Code:
+
+\subsection*{Extensões Necessárias}\label{extensuxf5es-necessuxe1rias}
+\addcontentsline{toc}{subsection}{Extensões Necessárias}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{R} (REditorSupport.r)
+\item
+  \textbf{Quarto} (quarto.quarto)
+\item
+  \textbf{R Debugger} (RDebugger.r-debugger)
+\end{enumerate}
+
+\subsection*{Configuração}\label{configurauxe7uxe3o}
+\addcontentsline{toc}{subsection}{Configuração}
+
+Crie \texttt{.vscode/settings.json}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{\{}
+  \DataTypeTok{"r.rterm.windows"}\FunctionTok{:} \StringTok{"C:}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{Program Files}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{R}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{R{-}4.5.1}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{bin}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{R.exe"}\FunctionTok{,}
+  \DataTypeTok{"r.rterm.linux"}\FunctionTok{:} \StringTok{"/usr/bin/R"}\FunctionTok{,}
+  \DataTypeTok{"r.rterm.mac"}\FunctionTok{:} \StringTok{"/usr/local/bin/R"}\FunctionTok{,}
+  \DataTypeTok{"r.bracketedPaste"}\FunctionTok{:} \KeywordTok{true}\FunctionTok{,}
+  \DataTypeTok{"r.sessionWatcher"}\FunctionTok{:} \KeywordTok{true}\FunctionTok{,}
+  \DataTypeTok{"quarto.render.renderOnSave"}\FunctionTok{:} \KeywordTok{false}
+\FunctionTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\section*{Verificação Final}\label{verificauxe7uxe3o-final}
+\addcontentsline{toc}{section}{Verificação Final}
+
+\markright{Verificação Final}
+
+Execute o seguinte script para verificar se tudo está configurado:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Verificar versão do R}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"R version:"}\NormalTok{, R.version.string, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+
+\CommentTok{\# Verificar pacotes principais}
+\NormalTok{required\_packages }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{, }\StringTok{"survival"}\NormalTok{, }\StringTok{"ggplot2"}\NormalTok{, }\StringTok{"knitr"}\NormalTok{)}
+\NormalTok{missing }\OtherTok{\textless{}{-}}\NormalTok{ required\_packages[}\SpecialCharTok{!}\FunctionTok{sapply}\NormalTok{(required\_packages, requireNamespace, }\AttributeTok{quietly =} \ConstantTok{TRUE}\NormalTok{)]}
+
+\ControlFlowTok{if}\NormalTok{ (}\FunctionTok{length}\NormalTok{(missing) }\SpecialCharTok{==} \DecValTok{0}\NormalTok{) \{}
+    \FunctionTok{cat}\NormalTok{(}\StringTok{" Todos os pacotes necessários estão instalados!}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+    \FunctionTok{cat}\NormalTok{(}\StringTok{" Pacotes faltando:"}\NormalTok{, }\FunctionTok{paste}\NormalTok{(missing, }\AttributeTok{collapse =} \StringTok{", "}\NormalTok{), }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\NormalTok{\}}
+
+\CommentTok{\# Verificar Quarto (via terminal)}
+\FunctionTok{system}\NormalTok{(}\StringTok{"quarto {-}{-}version"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section*{Estrutura de Projeto
+Recomendada}\label{estrutura-de-projeto-recomendada}
+\addcontentsline{toc}{section}{Estrutura de Projeto Recomendada}
+
+\markright{Estrutura de Projeto Recomendada}
+
+Organize seus arquivos assim:
+
+\begin{verbatim}
+QuartoBook/
+├── .Rprofile              # Configurações R
+├── .Renviron              # Variáveis de ambiente
+├── _quarto.yml            # Configuração Quarto
+├── chapters/              # Capítulos
+├── appendices/            # Apêndices
+├── resources/
+│   ├── data/              # Dados (.csv, .rds)
+│   ├── scripts/           # Scripts R auxiliares
+│   └── images/            # Figuras
+└── docs/                  # Output renderizado
+\end{verbatim}
+
+\section*{Próximos Passos}\label{pruxf3ximos-passos}
+\addcontentsline{toc}{section}{Próximos Passos}
+
+\markright{Próximos Passos}
+
+Agora que seu ambiente está configurado:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Clone ou baixe os materiais do livro
+\item
+  Abra o projeto no RStudio ou VS Code
+\item
+  Execute \texttt{quarto\ preview} para visualizar o livro
+\item
+  Comece pelo Capítulo 1: Fundamentos de Confiabilidade
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+🔔 \textbf{Dica:} Mantenha seus pacotes R atualizados com:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{update.packages}\NormalTok{(}\AttributeTok{ask =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+✅ \textbf{Ambiente configurado! Você está pronto para começar!}
 
 \part{Parte I - Medidas de Performance na Mineração}
 
@@ -377,7 +1385,7 @@ tempo de fila para bascular) e, finalmente, o basculamento (TB-- tempo
 de basculamento). Para um único turno de trabalho da operação, um
 determinado número de ciclos (NC) é realizado.
 
-\begin{tcolorbox}[enhanced jigsaw, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, left=2mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, breakable, toprule=.15mm, bottomtitle=1mm, colback=white, toptitle=1mm, titlerule=0mm, leftrule=.75mm, colbacktitle=quarto-callout-note-color!10!white, arc=.35mm, opacitybacktitle=0.6, opacityback=0, rightrule=.15mm, coltitle=black]
+\begin{tcolorbox}[enhanced jigsaw, opacityback=0, leftrule=.75mm, colback=white, bottomrule=.15mm, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, colframe=quarto-callout-note-color-frame, coltitle=black, titlerule=0mm, opacitybacktitle=0.6, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, toprule=.15mm, toptitle=1mm, arc=.35mm, left=2mm, bottomtitle=1mm, breakable]
 
 O tempo total do ciclo influencia diretamente a produtividade da
 operação e é afetado por fatores como distância de transporte, condições
@@ -537,7 +1545,7 @@ níveis a soma das categorias representam as \textbf{horas calendário}
 HC = HT + HM + HO
 \]
 
-\begin{tcolorbox}[enhanced jigsaw, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Legenda das Categorias de Horas}, left=2mm, colframe=quarto-callout-note-color-frame, bottomrule=.15mm, breakable, toprule=.15mm, bottomtitle=1mm, colback=white, toptitle=1mm, titlerule=0mm, leftrule=.75mm, colbacktitle=quarto-callout-note-color!10!white, arc=.35mm, opacitybacktitle=0.6, opacityback=0, rightrule=.15mm, coltitle=black]
+\begin{tcolorbox}[enhanced jigsaw, opacityback=0, leftrule=.75mm, colback=white, bottomrule=.15mm, colbacktitle=quarto-callout-note-color!10!white, rightrule=.15mm, colframe=quarto-callout-note-color-frame, coltitle=black, titlerule=0mm, opacitybacktitle=0.6, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Legenda das Categorias de Horas}, toprule=.15mm, toptitle=1mm, arc=.35mm, left=2mm, bottomtitle=1mm, breakable]
 
 \begin{itemize}
 \tightlist
@@ -814,7 +1822,7 @@ Perda por PR & (240.1 - 232.8) × 583 & 4292\\
 
 Exemplo de cálculo de ICDs e perda de produção
 
-\begin{tcolorbox}[enhanced jigsaw, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Interpretação das Perdas}, left=2mm, colframe=quarto-callout-important-color-frame, bottomrule=.15mm, breakable, toprule=.15mm, bottomtitle=1mm, colback=white, toptitle=1mm, titlerule=0mm, leftrule=.75mm, colbacktitle=quarto-callout-important-color!10!white, arc=.35mm, opacitybacktitle=0.6, opacityback=0, rightrule=.15mm, coltitle=black]
+\begin{tcolorbox}[enhanced jigsaw, opacityback=0, leftrule=.75mm, colback=white, bottomrule=.15mm, colbacktitle=quarto-callout-important-color!10!white, rightrule=.15mm, colframe=quarto-callout-important-color-frame, coltitle=black, titlerule=0mm, opacitybacktitle=0.6, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Interpretação das Perdas}, toprule=.15mm, toptitle=1mm, arc=.35mm, left=2mm, bottomtitle=1mm, breakable]
 
 A análise de perda de produção permite identificar qual indicador teve
 maior impacto negativo na produção realizada, direcionando as ações de
@@ -856,11 +1864,11 @@ melhoria:
 
 \textbf{Próximo capítulo:} Fundamentos da Gestão da Manutenção
 
-\chapter{}\label{section}
-
 \chapter{}\label{section-1}
 
 \chapter{}\label{section-2}
+
+\chapter{}\label{section-3}
 
 \bookmarksetup{startatroot}
 
@@ -880,14 +1888,31 @@ In summary, this book has no content whatsoever.
 
 \bookmarksetup{startatroot}
 
-\chapter*{References}\label{references}
-\addcontentsline{toc}{chapter}{References}
+\chapter*{Referências}\label{referuxeancias}
+\addcontentsline{toc}{chapter}{Referências}
 
-\markboth{References}{References}
+\markboth{Referências}{Referências}
 
 \phantomsection\label{refs}
 \begin{CSLReferences}{0}{1}
 \end{CSLReferences}
+
+\section*{Recursos Adicionais}\label{recursos-adicionais}
+\addcontentsline{toc}{section}{Recursos Adicionais}
+
+\markright{Recursos Adicionais}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://quarto.org/}{Documentação Quarto}
+\item
+  \href{https://r4ds.hadley.nz/}{R for Data Science}
+\item
+  \href{https://shiny.posit.co/}{Shiny Documentation}
+\item
+  \href{https://supabase.com/docs}{Supabase Documentation}
+\end{itemize}
 
 
 \backmatter

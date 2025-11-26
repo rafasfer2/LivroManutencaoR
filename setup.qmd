@@ -1,14 +1,301 @@
----
-title: "Setup"
-format: html
-numbered: false
+# Instalação e Ambiente {.unnumbered}
+
+Este capítulo fornece instruções detalhadas para configurar o ambiente de trabalho necessário para reproduzir os exemplos deste livro.
+
+## Instalação do R
+
+### Windows
+
+1. Acesse [https://cran.r-project.org/bin/windows/base/](https://cran.r-project.org/bin/windows/base/)
+2. Baixe o instalador mais recente (ex: `R-4.5.1-win.exe`)
+3. Execute o instalador e siga as instruções padrão
+
+### macOS
+
+1. Acesse [https://cran.r-project.org/bin/macosx/](https://cran.r-project.org/bin/macosx/)
+2. Baixe o arquivo `.pkg` apropriado para sua versão do macOS
+3. Execute o instalador
+
+### Linux (Ubuntu/Debian)
+
+```bash
+# Adicionar repositório CRAN
+sudo apt update
+sudo apt install -y software-properties-common dirmngr
+wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
+
+# Adicionar repositório
+sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
+
+# Instalar R
+sudo apt update
+sudo apt install -y r-base r-base-dev
+```
+
+### Verificar Instalação
+
+Abra um terminal ou prompt de comando e execute:
+
+```bash
+R --version
+```
+
+Você deve ver algo como:
+
+```
+R version 4.5.1 (2024-06-14) -- "Beagle Scouts"
+```
+
+## Instalação do RStudio Desktop
+
+RStudio é o IDE (Ambiente de Desenvolvimento Integrado) mais popular para R.
+
+1. Acesse [https://posit.co/download/rstudio-desktop/](https://posit.co/download/rstudio-desktop/)
+2. Baixe o instalador para seu sistema operacional
+3. Execute o instalador
+
+## Instalação do Quarto
+
+Quarto é o sistema de publicação utilizado para criar este livro.
+
+### Windows
+
+1. Acesse [https://quarto.org/docs/get-started/](https://quarto.org/docs/get-started/)
+2. Baixe o instalador `.msi` para Windows
+3. Execute o instalador
+
+### macOS
+
+```bash
+# Via Homebrew
+brew install --cask quarto
+```
+
+Ou baixe o instalador `.pkg` do site oficial.
+
+### Linux
+
+```bash
+# Ubuntu/Debian
+wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.6.39/quarto-1.6.39-linux-amd64.deb
+sudo dpkg -i quarto-1.6.39-linux-amd64.deb
+```
+
+### Verificar Instalação
+
+```bash
+quarto --version
+```
+
+## Instalação de Pacotes R
+
+### Pacotes Essenciais
+
+Abra o R ou RStudio e execute:
+
+```{r}
+#| eval: false
+#| echo: true
+
+# Manipulação e visualização de dados
+install.packages("tidyverse") # Inclui dplyr, tidyr, ggplot2, readr, etc.
+
+# Análise de confiabilidade e sobrevivência
+install.packages("survival")
+install.packages("flexsurv")
+install.packages("WeibullR")
+
+# Tabelas e relatórios
+install.packages("knitr")
+install.packages("kableExtra")
+install.packages("DT")
+install.packages("broom")
+
+# Visualização avançada
+install.packages("plotly")
+install.packages("patchwork")
+```
+
+### Pacotes para Manutenção Preditiva
+
+```{r}
+#| eval: false
+#| echo: true
+
+install.packages("caret") # Machine learning
+install.packages("randomForest") # Random Forest
+install.packages("prophet") # Séries temporais (Facebook Prophet)
+install.packages("anomalize") # Detecção de anomalias
+```
+
+### Instalação via Script
+
+Para instalar todos os pacotes de uma vez, crie o arquivo `resources/install_packages.R`:
+
+```{r}
+#| eval: false
+#| echo: true
+
+# Script de instalação completa
+packages <- c(
+    # Manipulação de dados
+    "tidyverse", "dplyr", "tidyr", "readr", "lubridate",
+
+    # Visualização
+    "ggplot2", "plotly", "patchwork", "ggthemes",
+
+    # Confiabilidade e sobrevivência
+    "survival", "flexsurv", "WeibullR", "reliability",
+
+    # Tabelas e reports
+    "knitr", "kableExtra", "DT", "broom", "gt",
+
+    # Machine learning
+    "caret", "randomForest", "xgboost",
+
+    # Séries temporais
+    "prophet", "anomalize", "forecast",
+
+    # Simulação
+    "simmer", "MASS"
+)
+
+# Verificar e instalar apenas os que faltam
+new_packages <- packages[!(packages %in% installed.packages()[, "Package"])]
+if (length(new_packages)) install.packages(new_packages)
+
+cat("Pacotes instalados com sucesso!\n")
+```
+
+Execute no R:
+
+```{r}
+#| eval: false
+#| echo: true
+
+source("resources/install_packages.R")
+```
+
+## Configuração do Ambiente
+
+### Arquivo `.Rprofile`
+
+Crie um arquivo `.Rprofile` na raiz do projeto para configurações globais:
+
+```r
+# .Rprofile
+options(
+  repos = c(CRAN = "https://cloud.r-project.org/"),
+  scipen = 999,           # Desabilitar notação científica
+  stringsAsFactors = FALSE,
+  max.print = 100
+)
+
+# Carregar pacotes frequentes automaticamente
+if (interactive()) {
+  suppressMessages({
+    library(tidyverse)
+    library(here)
+  })
+  cat("\n Ambiente R configurado! \n\n")
+}
+```
+
+### Arquivo `.Renviron`
+
+Para variáveis de ambiente (ex: chaves de API):
+
+```bash
+# .Renviron
+R_MAX_NUM_DLLS=300
+```
+
+## VS Code (Alternativa ao RStudio)
+
+Se preferir usar VS Code:
+
+### Extensões Necessárias
+
+1. **R** (REditorSupport.r)
+2. **Quarto** (quarto.quarto)
+3. **R Debugger** (RDebugger.r-debugger)
+
+### Configuração
+
+Crie `.vscode/settings.json`:
+
+```json
+{
+  "r.rterm.windows": "C:\\Program Files\\R\\R-4.5.1\\bin\\R.exe",
+  "r.rterm.linux": "/usr/bin/R",
+  "r.rterm.mac": "/usr/local/bin/R",
+  "r.bracketedPaste": true,
+  "r.sessionWatcher": true,
+  "quarto.render.renderOnSave": false
+}
+```
+
+## Verificação Final
+
+Execute o seguinte script para verificar se tudo está configurado:
+
+```{r}
+#| eval: false
+#| echo: true
+
+# Verificar versão do R
+cat("R version:", R.version.string, "\n")
+
+# Verificar pacotes principais
+required_packages <- c("tidyverse", "survival", "ggplot2", "knitr")
+missing <- required_packages[!sapply(required_packages, requireNamespace, quietly = TRUE)]
+
+if (length(missing) == 0) {
+    cat(" Todos os pacotes necessários estão instalados!\n")
+} else {
+    cat(" Pacotes faltando:", paste(missing, collapse = ", "), "\n")
+}
+
+# Verificar Quarto (via terminal)
+system("quarto --version")
+```
+
+## Estrutura de Projeto Recomendada
+
+Organize seus arquivos assim:
+
+```
+QuartoBook/
+├── .Rprofile              # Configurações R
+├── .Renviron              # Variáveis de ambiente
+├── _quarto.yml            # Configuração Quarto
+├── chapters/              # Capítulos
+├── appendices/            # Apêndices
+├── resources/
+│   ├── data/              # Dados (.csv, .rds)
+│   ├── scripts/           # Scripts R auxiliares
+│   └── images/            # Figuras
+└── docs/                  # Output renderizado
+```
+
+## Próximos Passos
+
+Agora que seu ambiente está configurado:
+
+1. Clone ou baixe os materiais do livro
+2. Abra o projeto no RStudio ou VS Code
+3. Execute `quarto preview` para visualizar o livro
+4. Comece pelo Capítulo 1: Fundamentos de Confiabilidade
 
 ---
-# Setup
 
-Para começar, certifique-se de que o R e os pacotes necessários estão instalados em seu computador.
+🔔 **Dica:** Mantenha seus pacotes R atualizados com:
 
-Siga as instruções do capítulo anterior para instalar os pacotes. Recomenda-se também configurar o diretório de trabalho e garantir que os arquivos de dados estejam acessíveis.
+```{r}
+#| eval: false
+#| echo: true
 
-Caso utilize o Quarto, basta abrir este projeto e navegar pelos capítulos para acompanhar os exemplos e exercícios.
+update.packages(ask = FALSE)
+```
 
+✅ **Ambiente configurado! Você está pronto para começar!**
