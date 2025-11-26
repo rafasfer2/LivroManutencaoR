@@ -4,7 +4,6 @@ project:
 
 book:
   title: "Manutenção e Confiabilidade: Aplicação em R"
-  subtitle: "Aplicações em R"
   author:
     - name: "Rafael da Silva Fernandes"
       affiliation: "Universidade Federal de Itajubá"
