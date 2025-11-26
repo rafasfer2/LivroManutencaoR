@@ -1,7 +1,7 @@
 ---
 title: "Requisitos e Ambiente"
 format: html
-numbered: false
+number-sections: false
 ---
 # Requisitos e Ambiente
 

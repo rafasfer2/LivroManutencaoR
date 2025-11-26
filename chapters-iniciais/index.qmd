@@ -2,7 +2,7 @@
 title: "Manutenção e Confiabilidade: Aplicação em R"
 author: "Rafael da Silva Fernandes"
 date: last-modified
-numbered: false
+number-sections: false
 ---
 # Bem-vindo {.unnumbered}
 
