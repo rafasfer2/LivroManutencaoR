@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Rafael da Silva Fernandes">
-<meta name="dcterms.date" content="2025-11-26">
 
-<title>Manutenção e Confiabilidade: Aplicação em R</title>
+<title>part1-03-aplicacao-pdca – Manutenção e Confiabilidade: Aplicação em R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -60,29 +58,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./requirements.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-2fdcbaaafb3fb0b2c554fc83cdde4fd1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-a0f56930dbc0dd01421bace557f587d6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-2fdcbaaafb3fb0b2c554fc83cdde4fd1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/part1-04-resumo.html" rel="next">
+<link href="../chapters/part1-02-analise-dados-recorrentes.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-2fdcbaaafb3fb0b2c554fc83cdde4fd1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-a0f56930dbc0dd01421bace557f587d6.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-2fdcbaaafb3fb0b2c554fc83cdde4fd1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -285,7 +284,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Bem-vindo(a)</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/part1-01-ciclo-carregamento-transporte.html">Parte I - Medidas de Performance na Mineração</a></li><li class="breadcrumb-item"><a href="../chapters/part1-03-aplicacao-pdca.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">part1-03-aplicacao-pdca.html</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -300,7 +299,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Manutenção e Confiabilidade: Aplicação em R</a> 
+      <a href="../">Manutenção e Confiabilidade: Aplicação em R</a> 
         <div class="sidebar-tools-main">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
@@ -315,19 +314,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Bem-vindo(a)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./requirements.html" class="sidebar-item-text sidebar-link">
+  <a href="../requirements.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Como Usar este Livro</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./setup.html" class="sidebar-item-text sidebar-link">
+  <a href="../setup.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Instalação e Ambiente</span></a>
   </div>
 </li>
@@ -342,31 +341,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/part1-01-ciclo-carregamento-transporte.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/part1-01-ciclo-carregamento-transporte.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Ciclo dos processos de carregamento e transporte</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/part1-02-analise-dados-recorrentes.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/part1-02-analise-dados-recorrentes.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Análise de Dados Recorrentes e Indicadores</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/part1-03-aplicacao-pdca.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/part1-03-aplicacao-pdca.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">part1-03-aplicacao-pdca.html</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/part1-04-resumo.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/part1-04-resumo.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">part1-04-resumo.html</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/part1-05-exercicios.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/part1-05-exercicios.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">part1-05-exercicios.html</span></span></a>
   </div>
 </li>
@@ -374,13 +373,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link">
+  <a href="../summary.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Referências</span></a>
   </div>
 </li>
@@ -389,136 +388,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#bem-vindoa" id="toc-bem-vindoa" class="nav-link active" data-scroll-target="#bem-vindoa">Bem-vindo(a)</a>
-  <ul class="collapse">
-  <li><a href="#indicadores-chave-de-desempenho-icds" id="toc-indicadores-chave-de-desempenho-icds" class="nav-link" data-scroll-target="#indicadores-chave-de-desempenho-icds">Indicadores-Chave de Desempenho (ICDs)</a></li>
-  <li><a href="#público-alvo" id="toc-público-alvo" class="nav-link" data-scroll-target="#público-alvo">Público-Alvo</a></li>
-  <li><a href="#objetivos" id="toc-objetivos" class="nav-link" data-scroll-target="#objetivos">Objetivos</a></li>
-  <li><a href="#como-usar-este-livro" id="toc-como-usar-este-livro" class="nav-link" data-scroll-target="#como-usar-este-livro">Como Usar Este Livro</a></li>
-  <li><a href="#convenções" id="toc-convenções" class="nav-link" data-scroll-target="#convenções">Convenções</a></li>
-  <li><a href="#agradecimentos" id="toc-agradecimentos" class="nav-link" data-scroll-target="#agradecimentos">Agradecimentos</a></li>
-  </ul></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/part1-01-ciclo-carregamento-transporte.html">Parte I - Medidas de Performance na Mineração</a></li><li class="breadcrumb-item"><a href="../chapters/part1-03-aplicacao-pdca.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">part1-03-aplicacao-pdca.html</span></a></li></ol></nav><h1 class="title display-7"></h1></header><div class="quarto-title-block"><div class="quarto-title-tools-only"><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Manutenção e Confiabilidade: Aplicação em R</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
-</div>
 
 
-<div class="quarto-title-meta-author">
-  <div class="quarto-title-meta-heading">Author</div>
-  <div class="quarto-title-meta-heading">Affiliation</div>
-  
-    <div class="quarto-title-meta-contents">
-    <p class="author">Rafael da Silva Fernandes </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            Universidade Federal de Itajubá
-          </p>
-      </div>
-  </div>
 
-<div class="quarto-title-meta">
-
-      
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">November 26, 2025</p>
-    </div>
-  </div>
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<p>title: “Manutenção e Confiabilidade: Aplicação em R” author: “Rafael da Silva Fernandes” date: last-modified format: html numbered: false number-sections: false</p>
-<section id="bem-vindoa" class="level1 unnumbered">
-<h1 class="unnumbered">Bem-vindo(a)</h1>
-<p>Seja bem-vindo(a) a este livro técnico voltado à análise de confiabilidade e estratégias de manutenção aplicadas a sistemas industriais. A confiabilidade e a manutenção de ativos são disciplinas essenciais para garantir a eficiência operacional, a segurança dos processos e a sustentabilidade econômica de sistemas complexos.</p>
-<p>Com o avanço das tecnologias de monitoramento, da coleta automatizada de dados e das ferramentas de análise estatística, tornou-se possível aplicar métodos quantitativos robustos para avaliar o desempenho de equipamentos, prever falhas e otimizar políticas de manutenção.</p>
-<p>Este material foi desenvolvido com o propósito de oferecer uma introdução <strong>prática e aplicada</strong> aos conceitos de confiabilidade, análise de dados de falha e modelagem de vida útil, com ênfase na utilização da linguagem <strong>R</strong> como ferramenta principal. A abordagem adotada combina fundamentos teóricos com aplicações reais, permitindo ao leitor compreender os principais indicadores de desempenho, ajustar modelos estatísticos e implementar estratégias de manutenção baseadas em dados.</p>
-<section id="indicadores-chave-de-desempenho-icds" class="level2">
-<h2 class="anchored" data-anchor-id="indicadores-chave-de-desempenho-icds">Indicadores-Chave de Desempenho (ICDs)</h2>
-<p>Ao longo do livro, serão abordados os principais indicadores utilizados na gestão de manutenção:</p>
-<ul>
-<li><p><strong>DF – Disponibilidade Física (Availability):</strong> representa a capacidade de um sistema estar em condições de executar sua função. Sua indisponibilidade está diretamente relacionada às <strong>Horas de Manutenção (HM)</strong>, refletindo oportunidades de melhoria associadas ao status “em manutenção”.</p></li>
-<li><p><strong>UF – Utilização Física:</strong> indica o quanto da disponibilidade (<strong>HD</strong>) é efetivamente utilizada para operação (<strong>HT</strong>). A diferença entre HD e HT corresponde à <strong>Ociosidade (HO)</strong>, que ocorre quando o equipamento está “liberado pela manutenção” ou em “parada operacional”.</p></li>
-<li><p><strong>HT – Horas Trabalhadas:</strong> representam o tempo efetivo de operação dos ativos e são resultado direto da eficiência nos demais indicadores. Servem de base para o cálculo da UF e da produtividade.</p></li>
-<li><p><strong>PR – Produtividade:</strong> expressa a eficiência do ciclo de carregamento e transporte, sendo calculada pela razão entre a <strong>Massa Total transportada (MT)</strong> e as <strong>Horas Trabalhadas (HT)</strong>. Está associada ao status “apto para operação”.</p></li>
-<li><p><strong>MTBF – Mean Time Between Failures:</strong> tempo médio entre falhas, mede a confiabilidade do equipamento ao indicar o intervalo médio de tempo em que o sistema opera sem falhas. Quanto maior o MTBF, maior a confiabilidade.</p></li>
-<li><p><strong>MTTR – Mean Time to Repair:</strong> tempo médio para reparo, representa a eficiência da manutenção corretiva ao indicar quanto tempo, em média, é necessário para restaurar o funcionamento do equipamento após uma falha. Quanto menor o MTTR, maior a agilidade da equipe de manutenção.</p></li>
-</ul>
-</section>
-<section id="público-alvo" class="level2">
-<h2 class="anchored" data-anchor-id="público-alvo">Público-Alvo</h2>
-<p>Este livro é direcionado a:</p>
-<ul>
-<li>Engenheiros de confiabilidade e manutenção que buscam ferramentas práticas para análise de dados de falha e otimização de políticas.</li>
-<li>Analistas de dados interessados em aplicar modelos estatísticos e de machine learning em contextos industriais.</li>
-<li>Estudantes e pesquisadores que desejam aprender técnicas de análise de sobrevivência e modelagem de confiabilidade com exemplos reais.</li>
-<li>Gestores técnicos que precisam tomar decisões baseadas em dados para melhorar a performance de ativos.</li>
-</ul>
-</section>
-<section id="objetivos" class="level2">
-<h2 class="anchored" data-anchor-id="objetivos">Objetivos</h2>
-<p>Ao final da leitura, o leitor será capaz de:</p>
-<ul>
-<li>Compreender os conceitos fundamentais de confiabilidade, disponibilidade e manutenção.</li>
-<li>Ajustar e interpretar distribuições de vida útil (Weibull, exponencial, lognormal) a dados reais.</li>
-<li>Realizar análise de sobrevivência com dados censurados usando técnicas paramétricas e semiparamétricas.</li>
-<li>Implementar estratégias de manutenção preventiva e preditiva com base em dados de sensores e histórico de falhas.</li>
-<li>Utilizar simulação Monte Carlo para avaliar políticas de manutenção sob incerteza.</li>
-<li>Aplicar boas práticas de gestão de dados e reprodutibilidade em projetos de confiabilidade.</li>
-</ul>
-</section>
-<section id="como-usar-este-livro" class="level2">
-<h2 class="anchored" data-anchor-id="como-usar-este-livro">Como Usar Este Livro</h2>
-<p>Este livro é <strong>totalmente reproduzível</strong>. Todos os exemplos de código R estão embutidos nos capítulos e podem ser executados diretamente. Recomendamos que o leitor:</p>
-<ol type="1">
-<li>Instale o R e o RStudio (ou utilize o VS Code com extensões de R) conforme instruções no capítulo de instalação.</li>
-<li>Execute os exemplos à medida que avança pelos capítulos para consolidar o aprendizado.</li>
-<li>Explore os exercícios propostos ao final de cada capítulo para praticar os conceitos.</li>
-<li>Utilize os dados de exemplo fornecidos na pasta <code>resources/data/</code> para replicar as análises.</li>
-</ol>
-<p>Os capítulos são organizados de forma <strong>progressiva</strong>, começando pelos fundamentos teóricos e avançando para aplicações práticas e estudos de caso. Você pode seguir a ordem proposta ou pular para capítulos específicos de acordo com suas necessidades.</p>
-</section>
-<section id="convenções" class="level2">
-<h2 class="anchored" data-anchor-id="convenções">Convenções</h2>
-<ul>
-<li><strong>Código R</strong> é apresentado em blocos destacados e pode ser copiado diretamente.</li>
-<li><strong>Figuras e tabelas</strong> são numeradas e referenciadas ao longo do texto.</li>
-<li><strong>Exemplos práticos</strong> são marcados com 💡 e <strong>exercícios</strong> com 📝.</li>
-<li><strong>Dicas importantes</strong> são destacadas com 🔔.</li>
-</ul>
-</section>
-<section id="agradecimentos" class="level2">
-<h2 class="anchored" data-anchor-id="agradecimentos">Agradecimentos</h2>
-<p>Este livro é fruto de anos de experiência prática em engenharia de confiabilidade, análise de dados e ensino. Agradeço à comunidade R, aos desenvolvedores de pacotes open-source e a todos que contribuíram com feedback e sugestões ao longo do desenvolvimento deste material.</p>
-<hr>
-<p><strong>Rafael da Silva Fernandes</strong> <em>Novembro de 2025</em></p>
 
 
 <!-- -->
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -992,90 +875,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../chapters/part1-02-analise-dados-recorrentes.html" class="pagination-link" aria-label="Análise de Dados Recorrentes e Indicadores">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Análise de Dados Recorrentes e Indicadores</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./requirements.html" class="pagination-link" aria-label="Como Usar este Livro">
-        <span class="nav-page-text">Como Usar este Livro</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/part1-04-resumo.html" class="pagination-link" aria-label="part1-04-resumo.html">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">part1-04-resumo.html</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Manutenção e Confiabilidade: Aplicação em R"</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Rafael da Silva Fernandes"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> last-modified</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="an">numbered:</span><span class="co"> false</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="an">number-sections:</span><span class="co"> false</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu"># Bem-vindo(a) {.unnumbered}</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>Seja bem-vindo(a) a este livro técnico voltado à análise de confiabilidade e estratégias de manutenção aplicadas a sistemas industriais. A confiabilidade e a manutenção de ativos são disciplinas essenciais para garantir a eficiência operacional, a segurança dos processos e a sustentabilidade econômica de sistemas complexos.</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>Com o avanço das tecnologias de monitoramento, da coleta automatizada de dados e das ferramentas de análise estatística, tornou-se possível aplicar métodos quantitativos robustos para avaliar o desempenho de equipamentos, prever falhas e otimizar políticas de manutenção.</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>Este material foi desenvolvido com o propósito de oferecer uma introdução **prática e aplicada** aos conceitos de confiabilidade, análise de dados de falha e modelagem de vida útil, com ênfase na utilização da linguagem **R** como ferramenta principal. A abordagem adotada combina fundamentos teóricos com aplicações reais, permitindo ao leitor compreender os principais indicadores de desempenho, ajustar modelos estatísticos e implementar estratégias de manutenção baseadas em dados.</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">## Indicadores-Chave de Desempenho (ICDs)</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>Ao longo do livro, serão abordados os principais indicadores utilizados na gestão de manutenção:</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**DF – Disponibilidade Física (Availability):** representa a capacidade de um sistema estar em condições de executar sua função. Sua indisponibilidade está diretamente relacionada às **Horas de Manutenção (HM)**, refletindo oportunidades de melhoria associadas ao status “em manutenção”.</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**UF – Utilização Física:** indica o quanto da disponibilidade (**HD**) é efetivamente utilizada para operação (**HT**). A diferença entre HD e HT corresponde à **Ociosidade (HO)**, que ocorre quando o equipamento está “liberado pela manutenção” ou em “parada operacional”.</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**HT – Horas Trabalhadas:** representam o tempo efetivo de operação dos ativos e são resultado direto da eficiência nos demais indicadores. Servem de base para o cálculo da UF e da produtividade.</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**PR – Produtividade:** expressa a eficiência do ciclo de carregamento e transporte, sendo calculada pela razão entre a **Massa Total transportada (MT)** e as **Horas Trabalhadas (HT)**. Está associada ao status “apto para operação”.</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**MTBF – Mean Time Between Failures:** tempo médio entre falhas, mede a confiabilidade do equipamento ao indicar o intervalo médio de tempo em que o sistema opera sem falhas. Quanto maior o MTBF, maior a confiabilidade.</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**MTTR – Mean Time to Repair:** tempo médio para reparo, representa a eficiência da manutenção corretiva ao indicar quanto tempo, em média, é necessário para restaurar o funcionamento do equipamento após uma falha. Quanto menor o MTTR, maior a agilidade da equipe de manutenção.</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="fu">## Público-Alvo</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>Este livro é direcionado a:</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Engenheiros de confiabilidade e manutenção que buscam ferramentas práticas para análise de dados de falha e otimização de políticas.</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Analistas de dados interessados em aplicar modelos estatísticos e de machine learning em contextos industriais.</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Estudantes e pesquisadores que desejam aprender técnicas de análise de sobrevivência e modelagem de confiabilidade com exemplos reais.</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Gestores técnicos que precisam tomar decisões baseadas em dados para melhorar a performance de ativos.</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="fu">## Objetivos</span></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>Ao final da leitura, o leitor será capaz de:</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Compreender os conceitos fundamentais de confiabilidade, disponibilidade e manutenção.</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Ajustar e interpretar distribuições de vida útil (Weibull, exponencial, lognormal) a dados reais.</span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Realizar análise de sobrevivência com dados censurados usando técnicas paramétricas e semiparamétricas.</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Implementar estratégias de manutenção preventiva e preditiva com base em dados de sensores e histórico de falhas.</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Utilizar simulação Monte Carlo para avaliar políticas de manutenção sob incerteza.</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Aplicar boas práticas de gestão de dados e reprodutibilidade em projetos de confiabilidade.</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="fu">## Como Usar Este Livro</span></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>Este livro é **totalmente reproduzível**. Todos os exemplos de código R estão embutidos nos capítulos e podem ser executados diretamente. Recomendamos que o leitor:</span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Instale o R e o RStudio (ou utilize o VS Code com extensões de R) conforme instruções no capítulo de instalação.</span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Execute os exemplos à medida que avança pelos capítulos para consolidar o aprendizado.</span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Explore os exercícios propostos ao final de cada capítulo para praticar os conceitos.</span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Utilize os dados de exemplo fornecidos na pasta <span class="in">`resources/data/`</span> para replicar as análises.</span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>Os capítulos são organizados de forma **progressiva**, começando pelos fundamentos teóricos e avançando para aplicações práticas e estudos de caso. Você pode seguir a ordem proposta ou pular para capítulos específicos de acordo com suas necessidades.</span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="fu">## Convenções</span></span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Código R** é apresentado em blocos destacados e pode ser copiado diretamente.</span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Figuras e tabelas** são numeradas e referenciadas ao longo do texto.</span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Exemplos práticos** são marcados com 💡 e **exercícios** com 📝.</span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Dicas importantes** são destacadas com 🔔.</span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="fu">## Agradecimentos</span></span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>Este livro é fruto de anos de experiência prática em engenharia de confiabilidade, análise de dados e ensino. Agradeço à comunidade R, aos desenvolvedores de pacotes open-source e a todos que contribuíram com feedback e sugestões ao longo do desenvolvimento deste material.</span>
-<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>**Rafael da Silva Fernandes**</span>
-<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>*Novembro de 2025*</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

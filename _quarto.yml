@@ -27,7 +27,7 @@ book:
     - summary.qmd
     - references.qmd
 
-## bibliography: references.bib
+bibliography: references.bib
 
 language:
   pt-BR:
@@ -41,7 +41,6 @@ format:
     theme:
       light: flatly
       dark: darkly
-    css: styles/styles-clean.css
     code-fold: true
     code-tools: true
     toc: true
@@ -49,7 +48,4 @@ format:
     toc-depth: 3
     number-sections: true
     link-external-newwindow: true
-    fig-numbers: true
-  pdf:
-    documentclass: book
     fig-numbers: true

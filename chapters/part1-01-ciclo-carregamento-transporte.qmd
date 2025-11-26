@@ -42,36 +42,7 @@ Como a medição de desempenho baseia-se na duração de eventos temporais, os r
     * **Responsabilidade:** Gestão da Operação / Cadeia Produtiva.
     * Refere-se a paradas planejadas que consideram contingências maiores ou gargalos externos. Embora o ativo esteja sob custódia da operação, o gerenciamento dessas paradas geralmente ocorre em nível tático, visando o equilíbrio de toda a cadeia produtiva (e não apenas do equipamento isolado).
 
-```{r}
-#| label: fig-status-equipamento
-#| fig-cap: "Transições entre status do equipamento"
-#| echo: false
-#| warning: false
 
-# Se não tiver o pacote instalado, descomente a linha abaixo:
-# install.packages("DiagrammeR")
-
-library(DiagrammeR)
-
-grViz("
-digraph status {
-    graph [rankdir = TB, bgcolor = transparent]
-
-    node [shape = box, style = 'filled,rounded', fontname = Helvetica]
-
-    APO [label = 'Apto para\\nOperação', fillcolor = '#2ECC71']
-    LIB [label = 'Liberado pela\\nManutenção', fillcolor = '#3498DB']
-    MAN [label = 'Em\\nManutenção', fillcolor = '#E74C3C']
-    PAR [label = 'Parada\\nOperacional', fillcolor = '#95A5A6']
-
-    LIB -> APO [label = '  operação\\n  assume  ']
-    APO -> MAN [label = '  falha ou\\n  preventiva  ']
-    MAN -> LIB [label = '  conclusão\\n  serviço  ']
-    APO -> PAR [label = '  parada\\n  planejada  ']
-    PAR -> APO [label = '  retomada\\n  operação  ']
-}
-")
-```
 
 ## Descrição do equipamento
 
