@@ -1,41 +1,119 @@
 ---
-title: "Ciclo dos processos de carregamento e transporte"
+title: "Ciclo dos Processos de Carregamento e Transporte"
+format: html
+editor: source
+lang: pt
+bibliography: references.bib
 ---
 
-O ciclo de processos de carregamento e transporte, pertencente à etapa de lavra na mineração, ocorre apenas quando o caminhão se encontra com status de **"apto para operação"**, momento em que métricas de análise e indicadores são estabelecidos para a otimização do processo.
+```{r setup, include=FALSE}
+# Configurações globais de chunk
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+library(tidyverse)
+library(knitr)
+# library(kableExtra) # Opcional para tabelas mais elaboradas
 
-Conforme ilustrado na @fig-ciclo, o ciclo inicia no direcionamento do caminhão e segue a seguinte sequência de eventos:
+## Introdução ao Processo de Transporte
+Na mineração, há uma diversidade de métodos para o transporte de material. Contudo, os mais empregados são os transportes por caminhões, preferencialmente utilizados quando há uma grande distância entre o local de carga e descarga, havendo também a necessidade de equipamentos com maior velocidade de deslocamento em terrenos de níveis de gradientes diversos [@borges2013].
 
-1.  **TVV (Tempo de Viagem Vazio):** O caminhão percorre vazio o trajeto até o ponto de carga.
-2.  **TFC (Tempo de Fila para Carga):** Aguarda na fila para ser carregado.
-3.  **TMC (Tempo de Manobra para Carregar):** Realiza a manobra para posicionamento.
-4.  **TC (Tempo de Carregamento):** Ocorre o carregamento pela escavadeira.
-5.  **TVC (Tempo de Viagem Cheio):** Transporte do material com o caminhão cheio.
-6.  **TFB (Tempo de Fila para Bascular):** Aguarda na fila do ponto de descarga.
-7.  **TB (Tempo de Basculamento):** Realiza o basculamento do material.
+O tempo de ciclo no transporte de mineração é um fator crucial para a produtividade e os custos operacionais. Esse processo inclui o deslocamento do caminhão até o ponto de carga, onde é carregado, recebe a informação do destino de descarga pelo sistema de despacho, realiza o transporte até o ponto de basculamento, descarrega o material e retorna para um novo ciclo [@vieira2020].
 
-Para um único turno de trabalho da operação, contabiliza-se o total de ciclos realizados (**NC**).
+## Dinâmica do Ciclo e Definição de Variváveis
+
+Conforme ilustrado na @fig-ciclo, o ciclo inicia no direcionamento do caminhão e segue uma sequência lógica de eventos. Para um único turno de trabalho da operação, contabiliza-se o total de ciclos realizados (NC).
 
 ![Ciclo de processos de carregamento e transporte.](../images/fig-ciclo-processos.png){#fig-ciclo}
 
+::: callout-note O ciclo de processos de carregamento e transporte, pertencente à etapa de lavra na mineração, ocorre apenas quando o caminhão se encontra com status de "apto para operação", momento em que métricas de análise e indicadores são estabelecidos para a otimização do processo. :::
+
+### Métricas Temporais e Cinemáticas
+Para a modelagem matemática do processo, considera-se que o Tempo de Ciclo ($T_{ciclo}$), coletado em minutos, é a soma dos tempos individuais de cada etapa. Ele é dividido em dois componentes principais:Tempo Fixo ($T_{fixo}$): Compreende a soma das atividades operacionais que independem da distância de transporte.Tempo Variável ($T_{var}$): Compreende os tempos de deslocamento e depende diretamente das distâncias e velocidades desenvolvidas.A relação fundamental é expressa pela Equação @eq-tempo-ciclo:$$T_{ciclo} = T_{fixo} + T_{var}
+$$ {#eq-tempo-ciclo}
+
+O detalhamento do **Tempo Fixo** é dado pela soma dos sub-processos de fila, manobra e operação efetiva:
+$$T_{fixo} = TFC + TMC + TEC + TFB + TMB + TB$$ {#eq-tempo-fixo}Onde as variáveis representam:TFC (Tempo de Fila para Carga): Aguarda na fila para ser carregado.TMC (Tempo de Manobra para Carregar): Realiza a manobra para posicionamento.TEC (Tempo para Escavadeira Carregar): Ocorre o carregamento efetivo.TFB (Tempo de Fila para Bascular): Aguarda na fila do ponto de descarga.TMB (Tempo de Manobra para Báscula): Manobra no destino.TB (Tempo de Basculamento): Realiza o basculamento do material.Para as métricas de deslocamento, consideram-se:Distância Percorrida: Soma da distância Cheio + distância Vazio (em km).Velocidade Média ($V_{med}$): Calculada para os trechos cheio e vazio, além da média do ciclo em $km/h$.
+
+Matematicamente, o **Tempo de Ciclo ($T_{ciclo}$)** é a soma dos tempos individuais de cada etapa, coletados em minutos. Podemos definir o tempo total através da Equação 1:
+
+$$
+$$ {#eq-tempo-ciclo}
+
+Onde o **Tempo Fixo ($T_{fixo}$)** compreende as atividades que não dependem diretamente da distância de transporte, sendo composto por:
+
+$$
+$$ {#eq-tempo-fixo}
+
+Sendo:
+
+* **TFC:** Tempo de Fila para Carregar;
+* **TMC:** Tempo de Manobra para Carregar;
+* **TEC:** Tempo para Escavadeira Carregar (carregamento efetivo);
+* **TFB:** Tempo de Fila para Báscula;
+* **TMB:** Tempo de Manobra para Báscula;
+* **TB:** Tempo para Báscula (basculamento).
+
+Já os componentes variáveis, relacionados ao deslocamento, e as métricas de distância e velocidade são definidos como:
+
+1.  **Tempo Variável ($T_{var}$):** Soma do Tempo de Viagem Vazio ($TVV$) e Tempo de Viagem Cheio ($TVC$).
+2.  **Distância Percorrida ($D_{total}$):** Soma das distâncias percorridas cheio e vazio (em km).
+3.  **Velocidade Média ($V_{med}$):** Calculada com base na distância total e no tempo de ciclo, expressa em km/h.
+
+$$
+V_{med} = \frac{D_{total}}{T_{ciclo}/60}
+$$
+
 ::: callout-note
-O tempo total do ciclo influencia diretamente a produtividade da operação e é afetado por fatores como distância de transporte, condições da pista, eficiência do equipamento de carga e organização do tráfego.
+O ciclo de processos de carregamento e transporte ocorre apenas quando o caminhão se encontra com status de **"apto para operação"**. Neste momento, métricas de análise e indicadores são estabelecidos para a otimização do processo.
 :::
+
+## Gestão de Carga e Política 10/10/20
+
+A massa transportada é monitorada pelo sistema de balança dos caminhões. No entanto, falhas de leitura podem ocorrer. Para garantir a integridade dos dados, utiliza-se uma lógica de correção baseada no **Fator de Carga ($FC$)**.
+
+Caso a balança aponte um valor incoerente (flag `BalançaOk = 0`) ou o peso registrado seja muito baixo devido a erro de sensor, o sistema de despacho aplica um reajuste. A regra aplicada para a definição da carga final ($P_{tons}$) é descrita da seguinte forma: se a carga lida for inferior a 30% da carga alvo ($P_{alvo}$) da frota, assume-se o valor do Fator; caso contrário, mantém-se a leitura da balança.
+
+$$
+P_{tons} =
+\begin{cases}
+P_{fator}, & \text{se } P_{balança} < 0,30 \times P_{alvo} \\
+P_{balança}, & \text{caso contrário}
+\end{cases}
+$$ {#eq-fator-carga}
+
+Essa verificação gera a variável de **Controle de Cargas**, que classifica o ciclo em categorias como: *Aceitável, Caixa baixa, CargaOK, Subcarga, Proibitiva, FalhaBalança* ou *Crítica*.
+
+### A Política 10/10/20
+O fabricante dos caminhões adota a política de gerenciamento de carga útil conhecida como **10/10/20**. Essa diretriz visa prolongar a vida útil da máquina (pneus, estrutura, trem de força) e otimizar a produtividade:
+
+1.  A média de todas as cargas deve ser $\leq$ Carga Útil Alvo.
+2.  No máximo 10% das cargas podem exceder 110% da Carga Útil Alvo.
+3.  Nenhuma carga deve exceder 120% da Carga Útil Alvo (limite crítico).
+
+## Caracterização dos Dados e Frota
+
+Para este estudo, foram considerados dados reais extraídos do sistema de despacho e consolidados em planilhas Microsoft Excel. O *dataset* compreende o período de **junho a agosto de 2024**, totalizando **59.251 registros de ciclos**.
+
+A frota analisada é composta por equipamentos da Caterpillar, todos movidos a combustão, divididos em dois modelos principais:
+
+* **CAT 793D:** Caminhão de menor porte (aprox. 14 unidades).
+* **CAT 797F:** Caminhão de maior porte e capacidade produtiva (17 unidades).
+
+Os registros incluem data/hora (`DataHoraCarga`, `DataHoraBascula`), turno, tipo de material e número do equipamento. A análise confrontou os registros apontados pela balança com as cargas corrigidas pelo sistema (Fator de Carga), permitindo identificar inconsistências e validar a eficiência produtiva conforme evidenciado na Tabela 10 (recorte dos dados).
 
 ## Status do Equipamento {#sec-status-equipamento}
 
 Como a medição de desempenho baseia-se na duração de eventos temporais, os registros (apontamentos) ocorrem sempre que o caminhão altera seu estado. Esses estados são subdivididos em quatro classes fundamentais, que definem as responsabilidades sobre os **Indicadores Chave de Desempenho (KPIs)** e a natureza dos problemas operacionais:
 
-1.  **Apto para operação**
+-   **Apto para operação**
     -   **Responsabilidade:** Equipe de Operação.
     -   Neste status, o foco está na execução eficiente do ciclo de carregamento e transporte. O principal desafio técnico reside na correta alocação dos ativos. Segundo Mohtasham et al. (2021), a seleção e o dimensionamento adequado dos equipamentos de carga e transporte são cruciais para otimizar o manuseio de materiais e, consequentemente, elevar os índices de produtividade da mina.
-2.  **Liberado pela manutenção**
+-   **Liberado pela manutenção**
     -   **Responsabilidade:** Transição (Manutenção $\to$ Operação).
     -   Refere-se ao momento imediatamente posterior à conclusão de uma intervenção técnica e representa a transferência de custódia do ativo. Para que essa transição seja eficiente e não gere tempos mortos, é recomendável que exista um **Acordo de Nível de Serviço (ANS/SLA)** pré-estabelecido entre as equipes.
-3.  **Em manutenção**
+-   **Em manutenção**
     -   **Responsabilidade:** Equipe de Manutenção.
     -   Engloba todas as atividades necessárias para restaurar ou manter a condição do ativo. Inclui não apenas a execução (mecânica/elétrica), mas também os processos de apoio: planejamento (PCM), inspeção, programação e engenharia de confiabilidade.
-4.  **Parada operacional**
+-   **Parada operacional**
     -   **Responsabilidade:** Gestão da Operação / Cadeia Produtiva.
     -   Refere-se a paradas planejadas que consideram contingências maiores ou gargalos externos. Embora o ativo esteja sob custódia da operação, o gerenciamento dessas paradas geralmente ocorre em nível tático, visando o equilíbrio de toda a cadeia produtiva (e não apenas do equipamento isolado).
 
